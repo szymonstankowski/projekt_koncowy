@@ -1,4 +1,4 @@
-package pl.szymonstankowski.floraManager.plant;
+package pl.szymonstankowski.floraManager.userPlant;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,10 +9,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table (name = "plants")
+@Table(name = "user_plants")
 @Data
 @NoArgsConstructor
-public class Plant {
+public class UserPlant {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +39,6 @@ public class Plant {
     private String vegetationPeriod;
     @NotBlank
     private String soilType;
-
 
 
 }

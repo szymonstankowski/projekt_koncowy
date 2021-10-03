@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 
@@ -22,4 +23,5 @@ public class User {
     @Column(unique = true)
     private String userEmail;
     private String userPassword;
+
 }
