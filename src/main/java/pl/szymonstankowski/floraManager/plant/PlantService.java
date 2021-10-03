@@ -18,4 +18,8 @@ public class PlantService {
         return plantRepository.findAll();
     }
 
+    public Plant findPlant(Long id){
+        return plantRepository.findById(id).orElse(null);
+    }
+
 }
