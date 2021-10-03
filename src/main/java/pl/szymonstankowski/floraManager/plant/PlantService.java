@@ -2,6 +2,8 @@ package pl.szymonstankowski.floraManager.plant;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlantService {
 
@@ -11,10 +13,9 @@ public class PlantService {
         this.plantRepository = plantRepository;
     }
 
-    public void addPlant(Plant plant){
-        plantRepository.save(plant);
+
+    public List<Plant> showPlants() {
+        return plantRepository.findAll();
     }
-    public Plant getPlant(Long id){
-        return plantRepository.findById(id).orElse(null);
-    }
+
 }
