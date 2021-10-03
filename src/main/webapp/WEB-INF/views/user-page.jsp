@@ -10,9 +10,12 @@
 <a href="/userEdit/${user.id}">Edit User</a>
 <a href="/userDelete/${user.id}">   Delete User</a><br/><br/>
 <hr>
+<a href="/home">Strona glowna</a>
+<hr><br/>
 
 <c:forEach items="${userPlants}" var="userPlant">
-<u><b>${userPlant.name}</b></u>   <a href="/addToCollection/"${userPlant.id}>Dodaj</a><br/><br/>
+<u><b>${userPlant.name}</b></u>
+    <a href="/deletePlant/${userPlant.id}">Usun rosline</a><br/><br/>
 <b>DATA NASADZENIA:</b> ${userPlant.plantDate}<br/>
 <b>ID:</b> ${userPlant.id}
 <br/>

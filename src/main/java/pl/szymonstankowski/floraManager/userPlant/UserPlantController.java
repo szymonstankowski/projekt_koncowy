@@ -39,6 +39,13 @@ public class UserPlantController {
         return "user-page";
     }
 
+    @GetMapping("/deletePlant/{id}")
+    public String deleteUserPlant(@PathVariable Long id, Model model){
+        userPlantService.deleteUserPlant(id);
+        model.addAttribute("userPlants", userPlantService.showUserPlants());
+        return "user-page";
+    }
+
 
 
 }
