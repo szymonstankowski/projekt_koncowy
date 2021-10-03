@@ -25,7 +25,6 @@ public class UserController {
         return "user-list";
     }
 
-
     @GetMapping("/newUser")
     public String createUser(Model model) {
         model.addAttribute("user", new User());
@@ -34,16 +33,24 @@ public class UserController {
     @PostMapping("/newUser")
     public String saveUser(User user){
         userService.saveUser(user);
+
+        return "redirect:/userPage/"+user.getId();
+    }
+    @GetMapping("/userPage/{id}")
+    public String userPage(@PathVariable Long id, Model model){
+        User user1 = userService.showUser(id);
+        model.addAttribute("user", user1);
         return "user-page";
     }
 
-    @GetMapping("/{id}")
+
+    @GetMapping("/userEdit/{id}")
     public String editUser(@PathVariable Long id, Model model) {
         model.addAttribute("user", userService.editUser(id));
-        return "user-page";
+        return "user-form";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/userDelete/{id}")
     public String deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return "plants";

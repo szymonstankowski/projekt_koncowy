@@ -7,15 +7,12 @@
 
 
 <form:form method="post" action="/newUser" modelAttribute="user">
-    Email: <form:input path="userEmail"/><br/><br/>
+    Email: <form:input path="userEmail"/><br/>
 
-    Haslo: <form:input path="userPassword"/><br/><br/>
+    Haslo: <form:input type="password" path="userPassword"/><br/>
     <input type="submit" value="Save user">
     <br/><br/><br/>
-
 </form:form>
-
-
 
 
 </body>

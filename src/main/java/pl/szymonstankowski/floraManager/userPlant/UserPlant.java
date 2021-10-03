@@ -7,6 +7,7 @@ import pl.szymonstankowski.floraManager.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "user_plants")
@@ -30,7 +31,8 @@ public class UserPlant {
     @NotBlank
     @Column(length = 1500)
     private String description;
-
+    @NotBlank
+    private LocalDate plantDate;
     @NotBlank
     private Boolean sunnySpot;
     @NotBlank

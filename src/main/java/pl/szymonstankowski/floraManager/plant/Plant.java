@@ -18,9 +18,6 @@ public class Plant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne
-    private User user;
-
     @NotBlank
     private String name;
     @NotBlank
@@ -29,9 +26,10 @@ public class Plant {
     @NotBlank
     @Column(length = 1500)
     private String description;
-
     @NotBlank
     private Boolean sunnySpot;
+    @NotBlank
+    private Boolean editable;
     @NotBlank
     private String wateringInterval;
     @NotBlank
