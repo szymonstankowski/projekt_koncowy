@@ -20,11 +20,11 @@ public class UserPlantController {
         this.plantService = plantService;
     }
 
-    @GetMapping("/addToCollection/{id}")
-    public String addToUsersCollection(@PathVariable Long id, Model model){
+    @GetMapping("/addToCollection/{plantId}")
+    public String addToUsersCollection(@PathVariable Long plantId, Model model){
         UserPlant userPlant = new UserPlant();
         LocalDate date = LocalDate.now();
-        Plant plant1 = plantService.findPlant(id);
+        Plant plant1 = plantService.findPlant(plantId);
         userPlant.setName(plant1.getName());
         userPlant.setDescription(plant1.getDescription());
         userPlant.setSunnySpot(plant1.getSunnySpot());

@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 import java.util.List;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping
 public class PlantController {
 
     private PlantService plantService;
@@ -18,7 +19,7 @@ public class PlantController {
         this.plantService = plantService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String allPlants(Model model){
         List<Plant> plantList = plantService.showPlants();
         model.addAttribute("plant", plantList);

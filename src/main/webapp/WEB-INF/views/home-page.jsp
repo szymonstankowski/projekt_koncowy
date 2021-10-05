@@ -6,24 +6,25 @@
 <body>
 
 <br/>
-<h2><a href="/newUser">Rejestracja</a>  <a href="/login">Login</a> <br/><br/>
-<a href="/addNewPlant">Dodaj nowa rosline</a><br/><br/>
+<h2><a href="/newUser">Rejestracja</a><br/>
+    <a href="/login">Login</a> <br/><br/>
+    <a href="/addNewPlant">Dodaj nowa rosline</a><br/><br/>
 </h2>
 
 
-<c:forEach items="${plant}" var="userPlant">
-    <u><b>${userPlant.name}</b></u>   <a href="/addToCollection/${userPlant.id}">Dodaj</a><br/><br/>
-    <b>ID:</b> ${userPlant.id}
+<c:forEach items="${plant}" var="plant">
+    <u><b>${plant.name}</b></u>
+    <b>ID:</b> ${plant.id}
     <br/>
-    <b>OPIS:</b> ${userPlant.description}
+    <b>OPIS:</b> ${plant.description}
     <br/>
-    <b>NAWADNIANIE CO:</b> ${userPlant.wateringInterval} dni
+    <b>NAWADNIANIE CO:</b> ${plant.wateringInterval} dni
     <br/>
-    <b>TYP:</b> ${userPlant.type}
+    <b>TYP:</b> ${plant.type}
     <br/>
-    <b>OKRES WEGETACJI:</b> ${userPlant.vegetationPeriod}
+    <b>OKRES WEGETACJI:</b> ${plant.vegetationPeriod}
     <br/>
-    <b>TYP GLEBY:</b> ${userPlant.soilType}
+    <b>TYP GLEBY:</b> ${plant.soilType}
     <br/><hr><br/>
 
 </c:forEach>
