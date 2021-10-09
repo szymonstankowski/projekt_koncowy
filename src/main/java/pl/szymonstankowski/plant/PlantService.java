@@ -1,4 +1,4 @@
-package pl.szymonstankowski.floraManager.plant;
+package pl.szymonstankowski.plant;
 
 import org.springframework.stereotype.Service;
 
@@ -13,13 +13,11 @@ public class PlantService {
         this.plantRepository = plantRepository;
     }
 
-
-    public List<Plant> showPlants() {
+    public List<Plant> getPlants(){
         return plantRepository.findAll();
     }
 
-    public Plant findPlant(Long id){
-        return plantRepository.findById(id).orElse(null);
+    public Plant findPlantById(Long id){
+        return plantRepository.getById(id);
     }
-
 }

@@ -6,13 +6,13 @@
 <body>
 
 <br/>
-<h2><a href="/newUser">Rejestracja</a><br/>
+<h2><a href="/addNewUser">Rejestracja</a><br/>
     <a href="/login">Login</a> <br/><br/>
     <a href="/addNewPlant">Dodaj nowa rosline</a><br/><br/>
 </h2>
 
 
-<c:forEach items="${plant}" var="plant">
+<c:forEach items="${listOfPlants}" var="plant">
     <u><b>${plant.name}</b></u>
     <b>ID:</b> ${plant.id}
     <br/>

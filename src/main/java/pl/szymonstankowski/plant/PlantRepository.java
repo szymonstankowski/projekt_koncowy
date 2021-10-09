@@ -1,4 +1,4 @@
-package pl.szymonstankowski.floraManager.plant;
+package pl.szymonstankowski.plant;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

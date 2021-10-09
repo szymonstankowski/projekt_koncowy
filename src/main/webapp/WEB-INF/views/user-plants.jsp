@@ -6,17 +6,19 @@
 
 
 
-<b>Witaj!</b> ${user.name}<br/>
-<a href="/userEdit/${user.id}">Edit User</a>
-<a href="/userDelete/${user.id}">   Delete User</a><br/><br/>
+
 
 <hr>
 <a href="/">Strona glowna</a>
 <hr><br/>
+<a href=""
 
-<c:forEach items="${plants}" var="plant">
-    <a href="/addToCollection/${plant.id}">Dodaj</a><br/><br/>
-    <u><b>${plant.name}</b></u>
+<c:forEach items="${userPlants}" var="plant">
+    <a href="/deleteUserPlant/${plant.id}">Usun</a>
+    <br/><br/>
+    <b>NAZWA:</b> <u><b>${plant.name}</b></u>
+    <br/>
+<b>DATA NASADZENIA: </b>> <u><b>${plant.localDate}</b></u></>
     <br/>
     <b>ID:</b> ${plant.id}
     <br/>
@@ -33,5 +35,10 @@
 
 </c:forEach>
 
+
+
+
+
 </body>
+
 </html>

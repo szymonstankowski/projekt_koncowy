@@ -1,4 +1,4 @@
-package pl.szymonstankowski.floraManager;
+package pl.szymonstankowski;
 
 
 import org.springframework.boot.SpringApplication;

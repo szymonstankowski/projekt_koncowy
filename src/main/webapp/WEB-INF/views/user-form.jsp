@@ -6,11 +6,11 @@
 
 
 
-<form:form method="post" action="/newUser" modelAttribute="user">
-    Email: <form:input path="userEmail"/><br/>
-
-    Haslo: <form:input type="password" path="userPassword"/><br/>
-    <input type="submit" value="Save user">
+<form:form method="post" action="/addNewUser" modelAttribute="newUser">
+    Email: <form:input path="email"/><br/><br/>
+    Login: <form:input path="name"/><br/><br/>
+    Haslo: <form:input type="password" path="password"/><br/><br/>
+    <input type="submit" value="Add User">
     <br/><br/><br/>
 </form:form>
 
