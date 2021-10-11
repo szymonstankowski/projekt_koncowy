@@ -50,7 +50,7 @@ public class UserController {
             userService.saveUser(user);
             model.addAttribute("plants", plantService.getPlants());
             model.addAttribute("user", user);
-            return "user-page";
+            return "redirect:/login";
         }
     }
 
