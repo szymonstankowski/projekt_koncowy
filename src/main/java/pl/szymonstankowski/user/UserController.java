@@ -66,21 +66,7 @@ public class UserController {
         return "user-page";
     }
 
-    @GetMapping("/addToCollection/{id}")
-    public String addPlantToUserCollection(@PathVariable Long id, Model model){
-        Plant plantById = plantService.findPlantById(id);
 
-        UserPlants userPlant = new UserPlants();
-
-        userPlant.setLocalDate(LocalDate.now());
-
-        userPlantsService.saveUserPlants(userPlant);
-        List<UserPlants> userPlants = userPlantsService.getAll();
-
-
-        model.addAttribute("userPlants", userPlants);
-        return "user-plants";
-    }
     @GetMapping("/deleteUserPlant/{id}")
     public String deleteUserPlant(@PathVariable Long id, Model model){
         userPlantsService.deleteUserPlant(id);

@@ -22,7 +22,7 @@ public class UserPlantsService {
 
 
 
-    public void saveUserPlants(UserPlants userPlants){
+    public void savePlant(UserPlants userPlants){
         userPlantsRepository.save(userPlants);
     }
     public List<UserPlants> getAll(){
