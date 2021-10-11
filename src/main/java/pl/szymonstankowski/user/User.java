@@ -1,5 +1,6 @@
 package pl.szymonstankowski.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Entity
 @Data
+
 public class User implements UserDetails {
 
     @Id
@@ -29,6 +31,8 @@ public class User implements UserDetails {
 
     @OneToMany
     List<UserPlants> userPlants;
+
+
 
 
     @Override

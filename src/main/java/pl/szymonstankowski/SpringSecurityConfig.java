@@ -44,6 +44,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/userPage").hasRole("USER")
                 .antMatchers("/addNewUser").permitAll()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/").permitAll()
                 .and()
                 .formLogin().defaultSuccessUrl("/userPage");

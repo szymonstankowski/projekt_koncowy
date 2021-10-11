@@ -49,7 +49,8 @@ public class UserController {
         }else {
             userService.saveUser(user);
             model.addAttribute("plants", plantService.getPlants());
-            return "redirect:/userPage";
+            model.addAttribute("user", user);
+            return "user-page";
         }
     }
 
