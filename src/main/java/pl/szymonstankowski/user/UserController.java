@@ -7,11 +7,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pl.szymonstankowski.plant.Plant;
 import pl.szymonstankowski.plant.PlantService;
 import pl.szymonstankowski.userPlants.UserPlants;
 import pl.szymonstankowski.userPlants.UserPlantsService;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -47,8 +49,14 @@ public class UserController {
         }else {
             userService.saveUser(user);
             model.addAttribute("plants", plantService.getPlants());
-            return "user-page";
+            return "redirect:/userPage";
         }
+    }
+
+    @GetMapping("/userPage")
+    @ResponseBody
+    public String userPage(){
+        return "Tutaj powinna byc lista wszystkich roslin usera";
     }
 
     @GetMapping("/addToCollection/{id}")
@@ -57,19 +65,11 @@ public class UserController {
 
         UserPlants userPlant = new UserPlants();
 
-        userPlant.setName(plantById.getName());
-        userPlant.setDescription(plantById.getDescription());
         userPlant.setLocalDate(LocalDate.now());
-        userPlant.setType(plantById.getType());
-        userPlant.setSunnySpot(plantById.isSunnySpot());
-        userPlant.setVegetationPeriod(plantById.getVegetationPeriod());
-        userPlant.setWateringInterval(plantById.getWateringInterval());
-        userPlant.setSoilType(plantById.getSoilType());
-
 
         userPlantsService.saveUserPlants(userPlant);
         List<UserPlants> userPlants = userPlantsService.getAll();
-        //dodac przekazywanie usera
+
 
         model.addAttribute("userPlants", userPlants);
         return "user-plants";
@@ -81,5 +81,22 @@ public class UserController {
         model.addAttribute("userPlants", userPlants);
         return "user-plants";
     }
+
+    @GetMapping("/deleteUser")
+    public String deleteUser(Model model){
+        model.addAttribute("deleteUser", new User());
+        return "delete-user-form";
+    }
+
+    @PostMapping("/deleteUser")
+    public String removeUser(User user, BindingResult result){
+        if (result.hasErrors()){
+            return "delete-user-form";
+        }else {
+            userService.deleteUser(user.getName());
+            return "redirect:/";
+        }
+    }
+
 
 }

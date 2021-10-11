@@ -25,7 +25,10 @@ public class User implements UserDetails {
     @Email
     private String email;
     private String password;
-    private String role = "USER";
+    private String role;
+
+    @OneToMany
+    List<UserPlants> userPlants;
 
 
     @Override

@@ -8,7 +8,7 @@
 
 <b>Witaj!</b> ${user.name}<br/>
 <a href="/userEdit/${user.id}">Edit User</a>
-<a href="/userDelete/${user.id}">   Delete User</a><br/><br/>
+<a href="/deleteUser"> Delete User</a><br/><br/>
 
 <hr>
 <a href="/">Strona glowna</a>

@@ -1,7 +1,7 @@
 package pl.szymonstankowski;
 
 
-import org.springframework.data.crossstore.ChangeSetPersister;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,6 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findUserByName(username).orElse(null);
+        //todo throw if not exist
+        return userRepository.findUserByName(username).get();
     }
 }

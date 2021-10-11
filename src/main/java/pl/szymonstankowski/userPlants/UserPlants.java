@@ -17,16 +17,11 @@ public class UserPlants{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     User user;
+    @ManyToOne
+    Plant plant;
 
-    @Size(max = 1500)
-    private String description;
-    private String name;
-    private String soilType;
-    private String type;
-    private String vegetationPeriod;
-    private String wateringInterval;
-    private boolean sunnySpot;
     private LocalDate localDate;
 }
