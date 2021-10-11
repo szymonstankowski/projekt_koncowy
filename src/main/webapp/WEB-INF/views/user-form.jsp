@@ -6,7 +6,7 @@
 
 
 
-<form:form method="post" action="/addNewUser" modelAttribute="newUser">
+<form:form method="post" action="/userPage" modelAttribute="newUser">
     Email: <form:input path="email"/><br/><br/>
     Login: <form:input path="name"/><br/><br/>
     Haslo: <form:input type="password" path="password"/><br/><br/>

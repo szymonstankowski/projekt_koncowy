@@ -13,23 +13,14 @@
 <hr>
 <a href="/">Strona glowna</a>
 <hr><br/>
+<a href="/plantList">Lista roslin do dodania</a>
 
-<c:forEach items="${plants}" var="plant">
-    <a href="/addToCollection/${plant.id}">Dodaj</a><br/><br/>
-    <u><b>${plant.name}</b></u>
+<c:forEach items="${userPlants}" var="plant">
+    <!--<u><b></b></u>-->
     <br/>
     <b>ID:</b> ${plant.id}
     <br/>
-    <b>OPIS:</b> ${plant.description}
-    <br/>
-    <b>NAWADNIANIE CO:</b> ${plant.wateringInterval} dni
-    <br/>
-    <b>TYP:</b> ${plant.type}
-    <br/>
-    <b>OKRES WEGETACJI:</b> ${plant.vegetationPeriod}
-    <br/>
-    <b>TYP GLEBY:</b> ${plant.soilType}
-    <br/><hr><br/>
+
 
 </c:forEach>
 

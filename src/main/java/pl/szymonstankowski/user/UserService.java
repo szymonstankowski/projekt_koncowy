@@ -1,8 +1,11 @@
 package pl.szymonstankowski.user;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -20,6 +23,12 @@ public class UserService {
         user.setRole("ROLE_USER");
         userRepository.save(user);
     }
+
+    public User getUserByLogin(String login){
+        Optional<User> userByName = userRepository.findUserByName(login);
+        return userByName.orElseThrow(()-> new UsernameNotFoundException("User not found "+ login));
+    }
+
     @Transactional
     public void deleteUser(String name){
         userRepository.deleteUserByName(name);

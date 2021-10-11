@@ -1,13 +1,12 @@
 package pl.szymonstankowski.user;
 
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import pl.szymonstankowski.plant.Plant;
 import pl.szymonstankowski.plant.PlantService;
 import pl.szymonstankowski.userPlants.UserPlants;
@@ -23,6 +22,9 @@ public class UserController {
     private final UserService userService;
     private final PlantService plantService;
     private final UserPlantsService userPlantsService;
+//    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//    String login = authentication.getName();
+
 
     public UserController(UserService userService, PlantService plantService, UserPlantsService userPlantsService) {
         this.userService = userService;
@@ -42,22 +44,26 @@ public class UserController {
         model.addAttribute("newUser", new User());
         return "user-form";
     }
-    @PostMapping("/addNewUser")
+    @PostMapping("/userPage")
     public String addUser(User user, BindingResult result, Model model){
         if (result.hasErrors()){
             return "redirect:/addNewUser";
         }else {
             userService.saveUser(user);
-            model.addAttribute("plants", plantService.getPlants());
             model.addAttribute("user", user);
-            return "redirect:/login";
+            return "user-page";
         }
     }
 
-    @GetMapping("/userPage")
-    @ResponseBody
-    public String userPage(){
-        return "Tutaj powinna byc lista wszystkich roslin usera";
+    @GetMapping("/dashboard")
+    public String userPage(Model model, Principal principal){
+        String name = principal.getName();
+        System.out.println(name);
+        User user = userService.getUserByName(name);
+        model.addAttribute("user", user);
+        List<UserPlants> userPlants = userPlantsService.findAllUserPlantsByUser(user.getId());
+        model.addAttribute("userPlants", userPlants);
+        return "user-page";
     }
 
     @GetMapping("/addToCollection/{id}")

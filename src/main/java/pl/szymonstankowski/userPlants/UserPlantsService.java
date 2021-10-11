@@ -2,6 +2,7 @@ package pl.szymonstankowski.userPlants;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import pl.szymonstankowski.user.User;
 
 import java.util.List;
 
@@ -13,6 +14,12 @@ public class UserPlantsService {
     public UserPlantsService(UserPlantsRepository userPlantsRepository) {
         this.userPlantsRepository = userPlantsRepository;
     }
+    public List<UserPlants> findAllUserPlantsByUser(Long id){
+
+        return userPlantsRepository.findAllUserPlantsByUserId(id);
+    }
+
+
 
 
     public void saveUserPlants(UserPlants userPlants){
