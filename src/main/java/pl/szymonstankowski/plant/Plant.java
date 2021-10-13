@@ -22,7 +22,7 @@ public class Plant {
     private String type;
     private String vegetationPeriod;
     private String wateringInterval;
-    private boolean sunnySpot;
+    private String sunnySpot;
 
 
 }

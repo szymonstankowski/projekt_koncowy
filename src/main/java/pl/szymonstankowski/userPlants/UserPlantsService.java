@@ -18,6 +18,9 @@ public class UserPlantsService {
 
         return userPlantsRepository.findAllUserPlantsByUserId(id);
     }
+    public void deleteAllUserPlantsByUserId(Long id){
+        deleteAllUserPlantsByUserId(id);
+    }
 
 
 

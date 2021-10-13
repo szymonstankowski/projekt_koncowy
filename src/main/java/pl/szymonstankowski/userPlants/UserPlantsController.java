@@ -65,8 +65,7 @@ public class UserPlantsController {
     }
     @GetMapping("/addNewPlant")
     public String addNewPlant(Model model){
-        Plant plant = new Plant();
-        model.addAttribute("newPlant", plant);
+        model.addAttribute("plant", new Plant());
         return "new-plant-form";
     }
 

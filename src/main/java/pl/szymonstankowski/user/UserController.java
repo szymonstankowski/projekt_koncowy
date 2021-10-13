@@ -12,6 +12,7 @@ import pl.szymonstankowski.plant.PlantService;
 import pl.szymonstankowski.userPlants.UserPlants;
 import pl.szymonstankowski.userPlants.UserPlantsService;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
@@ -22,8 +23,6 @@ public class UserController {
     private final UserService userService;
     private final PlantService plantService;
     private final UserPlantsService userPlantsService;
-//    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//    String login = authentication.getName();
 
 
     public UserController(UserService userService, PlantService plantService, UserPlantsService userPlantsService) {
@@ -41,32 +40,29 @@ public class UserController {
 
     @GetMapping("/addNewUser")
     public String createUser(Model model){
-        model.addAttribute("newUser", new User());
+        model.addAttribute("user", new User());
         return "user-form";
     }
-    @PostMapping("/userPage")
+    @PostMapping("/addNewUser")
     public String addUser(User user, BindingResult result, Model model){
         if (result.hasErrors()){
-            return "redirect:/addNewUser";
+            return "user-form";
         }else {
             userService.saveUser(user);
             model.addAttribute("user", user);
-            return "user-page";
+            return "redirect:/login";
         }
     }
 
     @GetMapping("/dashboard")
     public String userPage(Model model, Principal principal){
         String name = principal.getName();
-        System.out.println(name);
         User user = userService.getUserByName(name);
         model.addAttribute("user", user);
         List<UserPlants> userPlants = userPlantsService.findAllUserPlantsByUser(user.getId());
         model.addAttribute("userPlants", userPlants);
         return "user-page";
     }
-
-
 
 
     @GetMapping("/deleteUser")

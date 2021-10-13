@@ -4,13 +4,11 @@
 <html>
 <body>
 <b>Witaj!</b> ${user.name}<br/>
-<a href="/deleteUser">Usun uzytkownika!</a><br/>
-<a href="/logout">Wyloguj!</a>
-
-<hr>
-<a href="/">Strona glowna</a>
+<a href="/deleteUser">Usun uzytkownika!</a>
 <hr>
 <a href="/plantList">Lista roslin do dodania</a>
+<hr>
+<a href="/addNewPlant">Dodaj nowa rosline</a>
 <hr>
 <a href="/logout">Wyloguj</a>
 <hr>

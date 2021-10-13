@@ -6,10 +6,11 @@
 <body>
 
 <br/>
-<h2><a href="/addNewUser">Rejestracja</a><br/>
-    <a href="/login">Login</a> <br/><br/>
-    <a href="/addNewPlant">Dodaj nowa rosline</a><br/><br/>
+<h2><a href="/addNewUser">Rejestracja</a>
+    <hr>
+    <a href="/login">Login</a> <br/>
 </h2>
+<hr>
 
 
 <c:forEach items="${listOfPlants}" var="plant">

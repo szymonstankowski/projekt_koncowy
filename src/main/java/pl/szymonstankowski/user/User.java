@@ -15,7 +15,6 @@ import java.util.List;
 
 @Entity
 @Data
-
 public class User implements UserDetails {
 
     @Id
@@ -25,6 +24,7 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String name;
     @Email
+    @Column(unique = true)
     private String email;
     private String password;
     private String role;

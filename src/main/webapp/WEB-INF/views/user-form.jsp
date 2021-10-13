@@ -4,9 +4,7 @@
 <html>
 <body>
 
-
-
-<form:form method="post" action="/userPage" modelAttribute="newUser">
+<form:form method="post" action="/addNewUser" modelAttribute="user">
     Email: <form:input path="email"/><br/><br/>
     Login: <form:input path="name"/><br/><br/>
     Haslo: <form:input type="password" path="password"/><br/><br/>
@@ -14,7 +12,5 @@
     <br/><br/><br/>
 </form:form>
 
-
 </body>
-
 </html>
