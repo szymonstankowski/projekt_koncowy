@@ -67,29 +67,17 @@ public class UserController {
     }
 
 
-    @GetMapping("/deleteUserPlant/{id}")
-    public String deleteUserPlant(@PathVariable Long id, Model model){
-        userPlantsService.deleteUserPlant(id);
-        List<UserPlants> userPlants = userPlantsService.getAll();
-        model.addAttribute("userPlants", userPlants);
-        return "user-plants";
-    }
+
 
     @GetMapping("/deleteUser")
-    public String deleteUser(Model model){
-        model.addAttribute("deleteUser", new User());
-        return "delete-user-form";
+    public String deleteUser(Principal principal){
+        String name = principal.getName();
+        User user = userService.getUserByName(name);
+        userService.deleteUserById(user.getId());
+        return "redirect:/";
     }
 
-    @PostMapping("/deleteUser")
-    public String removeUser(User user, BindingResult result){
-        if (result.hasErrors()){
-            return "delete-user-form";
-        }else {
-            userService.deleteUser(user.getName());
-            return "redirect:/";
-        }
-    }
+
 
 
 }

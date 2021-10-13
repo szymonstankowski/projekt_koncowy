@@ -20,4 +20,8 @@ public class PlantService {
     public Plant findPlantById(Long id){
         return plantRepository.getById(id);
     }
+
+    void savePlant(Plant plant){
+        plantRepository.save(plant);
+    }
 }

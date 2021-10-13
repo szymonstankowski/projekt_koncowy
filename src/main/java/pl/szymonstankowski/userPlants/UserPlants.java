@@ -24,4 +24,5 @@ public class UserPlants{
     Plant plant;
 
     private LocalDate localDate;
+
 }

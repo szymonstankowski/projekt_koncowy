@@ -6,8 +6,7 @@
 <body>
 
 <br/>
-<h2><a href="/addNewUser">Rejestracja</a><br/>
-    <a href="/login">Login</a> <br/><br/>
+<h2>
     <a href="/addNewPlant">Dodaj nowa rosline</a><br/><br/>
 </h2>
 
