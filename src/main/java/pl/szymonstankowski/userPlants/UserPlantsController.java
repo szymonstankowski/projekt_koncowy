@@ -47,7 +47,7 @@ public class UserPlantsController {
 
         Plant plant1 = userPlants.getPlant();
 
-        plant1.getDescription();
+
         userPlantsService.savePlant(userPlants);
         model.addAttribute("user", user);
         model.addAttribute("userPlants", userPlantsService.findAllUserPlantsByUser(user.getId()));
@@ -63,24 +63,33 @@ public class UserPlantsController {
         model.addAttribute("userPlants", userPlants);
         return "user-page";
     }
+
     @GetMapping("/addNewPlant")
-    public String addNewPlant(Model model){
+    public String addNewPlant(Model model) {
         model.addAttribute("plant", new Plant());
         return "new-plant-form";
     }
 
-    @PostMapping("/addNewPlant")
-    public String addNewPlant(Plant plant, BindingResult result){
+    @PostMapping("/createNewPlant")
+    public String addNewPlant(Plant plant, BindingResult result, Principal principal, Model model) {
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "redirect:/addNewPlant";
-        }else {
+        } else {
+            User user = userService.getUserByName(principal.getName());
+            plantService.savePlant(plant);
+            UserPlants userPlants = new UserPlants();
+            userPlants.setLocalDate(LocalDate.now());
+            userPlants.setUser(user);
 
+            Plant plant1 = plantService.findPlantById(plant.getId());
+            userPlants.setPlant(plant1);
+            userPlantsService.savePlant(userPlants);
 
+            model.addAttribute("user", user);
+            model.addAttribute("userPlants", userPlantsService.findAllUserPlantsByUser(user.getId()));
         }
-
-
-        return "new-plant-form";
+        return "user-page";
     }
 
 }

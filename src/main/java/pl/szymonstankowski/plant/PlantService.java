@@ -21,7 +21,13 @@ public class PlantService {
         return plantRepository.getById(id);
     }
 
-    void savePlant(Plant plant){
+    public void savePlant(Plant plant){
+        plant.setEditable(true);
         plantRepository.save(plant);
     }
+    public void deletePlant(Plant plant){
+        plantRepository.delete(plant);
+    }
+
+
 }

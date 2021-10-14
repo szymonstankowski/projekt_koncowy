@@ -23,6 +23,7 @@ public class Plant {
     private String vegetationPeriod;
     private String wateringInterval;
     private String sunnySpot;
+    private boolean editable;
 
 
 }

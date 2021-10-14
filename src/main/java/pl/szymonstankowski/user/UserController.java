@@ -32,11 +32,6 @@ public class UserController {
     }
 
 
-    @GetMapping("/")
-    public String homePage(Model model){
-        model.addAttribute("listOfPlants", plantService.getPlants());
-        return "home-page";
-    }
 
     @GetMapping("/addNewUser")
     public String createUser(Model model){
@@ -64,16 +59,15 @@ public class UserController {
         return "user-page";
     }
 
-
     @GetMapping("/deleteUser")
     public String deleteUser(Principal principal){
+
         String name = principal.getName();
         User user = userService.getUserByName(name);
+        userPlantsService.findAllUserPlantsByUser(user.getId());
+        userPlantsService.deleteAllUserPlantsByUserId(user.getId());
         userService.deleteUserById(user.getId());
         return "redirect:/";
     }
-
-
-
 
 }

@@ -14,9 +14,7 @@
 
 
 <c:forEach items="${listOfPlants}" var="plant">
-    <u><b>${plant.name}</b></u>
-    <b>ID:</b> ${plant.id}
-    <br/>
+    <u><b>${plant.name}</b></u><br/>
     <b>OPIS:</b> ${plant.description}
     <br/>
     <b>NAWADNIANIE CO:</b> ${plant.wateringInterval} dni

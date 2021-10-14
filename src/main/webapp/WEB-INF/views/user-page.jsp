@@ -8,7 +8,7 @@
 <hr>
 <a href="/plantList">Lista roslin do dodania</a>
 <hr>
-<a href="/addNewPlant">Dodaj nowa rosline</a>
+<a href="/addNewPlant">Dodaj wlasna rosline</a>
 <hr>
 <a href="/logout">Wyloguj</a>
 <hr>
@@ -22,7 +22,7 @@
     <b>TYP GLEBY: </b>${plant.plant.soilType}<br/><br/>
     <b>OKRES WEGETACJI: </b>${plant.plant.vegetationPeriod}<br/><br/>
     <b>MIEJSCE SLONECZNE?: </b>${plant.plant.sunnySpot}<br/><br/>
-    <b>PPODLEWAC CO: </b>${plant.plant.wateringInterval} DNI<br/><br/>
+    <b>PODLEWAC CO: </b>${plant.plant.wateringInterval} DNI<br/><br/>
     <hr>
 
 </c:forEach>
