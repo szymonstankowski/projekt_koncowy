@@ -16,13 +16,15 @@
 <c:forEach items="${userPlants}" var="plant">
     <!--<u><b></b></u>-->
     <br/>
-    <b>NAME: </b> ${plant.plant.name}<br/><br/><a href="/deleteUserPlant/${plant.id}"><b>USUN ROSLINE<b/></a><br/><br/>
-    <b>DATA NASADZENIA: </b>${plant.localDate}<br/><br/>
-    <b>DESCRIPTION: </b>${plant.plant.description}<br/><br/>
-    <b>TYP GLEBY: </b>${plant.plant.soilType}<br/><br/>
-    <b>OKRES WEGETACJI: </b>${plant.plant.vegetationPeriod}<br/><br/>
-    <b>MIEJSCE SLONECZNE?: </b>${plant.plant.sunnySpot}<br/><br/>
-    <b>PODLEWAC CO: </b>${plant.plant.wateringInterval} DNI<br/><br/>
+    <b>NAME:</b> ${plant.plant.name}<br/><br/>
+    <b>DATA NASADZENIA:</b>${plant.localDate}<br/><br/>
+    <b>OPIS:</b> ${plant.plant.description}<br/><br/>
+    <b>TYP GLEBY:</b> ${plant.plant.soilType}<br/><br/>
+    <b>OKRES WEGETACJI:</b> ${plant.plant.vegetationPeriod}<br/><br/>
+    <b>MIEJSCE SLONECZNE?:</b> ${plant.plant.sunnySpot}<br/><br/>
+    <b>PODLEWAC CO:</b> ${plant.plant.wateringInterval} DNI<br/><br/>
+
+    <b><a href="/deleteUserPlant/${plant.id}">USUN ROSLINE</a></b><br/>
     <hr>
 
 </c:forEach>

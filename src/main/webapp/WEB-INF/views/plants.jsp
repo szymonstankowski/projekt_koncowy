@@ -7,14 +7,14 @@
 
 <br/>
 <h2>
-    <a href="/addNewPlant">Dodaj nowa rosline</a><br/><br/>
+    <a href="/addNewPlant">Dodaj wlasna rosline</a><br/><br/>
 </h2>
 
 
 <c:forEach items="${plants}" var="plant">
-    <a href="/addPlant/${plant.id}">Dodaj</a><br/>
+    <a href="/addPlant/${plant.id}">Dodaj</a>
+    <br/>
     <u><b>${plant.name}</b></u>
-    <b>ID:</b> ${plant.id}
     <br/>
     <b>OPIS:</b> ${plant.description}
     <br/>

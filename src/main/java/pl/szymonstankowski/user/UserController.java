@@ -1,8 +1,6 @@
 package pl.szymonstankowski.user;
 
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,9 +10,7 @@ import pl.szymonstankowski.plant.PlantService;
 import pl.szymonstankowski.userPlants.UserPlants;
 import pl.szymonstankowski.userPlants.UserPlantsService;
 
-import javax.validation.Valid;
 import java.security.Principal;
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -54,7 +50,7 @@ public class UserController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         model.addAttribute("user", user);
-        List<UserPlants> userPlants = userPlantsService.findAllUserPlantsByUser(user.getId());
+        List<UserPlants> userPlants = userPlantsService.findAllUserPlantsByUserId(user.getId());
         model.addAttribute("userPlants", userPlants);
         return "user-page";
     }
@@ -64,10 +60,26 @@ public class UserController {
 
         String name = principal.getName();
         User user = userService.getUserByName(name);
-        userPlantsService.findAllUserPlantsByUser(user.getId());
-        userPlantsService.deleteAllUserPlantsByUserId(user.getId());
+        List<UserPlants> allUserPlantsByUser = userPlantsService.findAllUserPlantsByUserId(user.getId());
+        for (UserPlants userPlants : allUserPlantsByUser) {
+            userPlantsService.deleteUserPlant(userPlants.getId());
+        }
         userService.deleteUserById(user.getId());
         return "redirect:/";
     }
+
+    @GetMapping("/adminDashboard")
+    public String deleteAdminPlants(Model model) {
+        model.addAttribute("plants", plantService.getPlants());
+        return "admin-console";
+    }
+
+    @PostMapping("/adminDashboard")
+    public String deletePlant(@PathVariable Long id) {
+        Plant plantById = plantService.findPlantById(id);
+        plantService.deletePlant(plantById);
+        return "redirect:/deleteAdminPlants";
+    }
+
 
 }

@@ -14,7 +14,7 @@ public class UserPlantsService {
     public UserPlantsService(UserPlantsRepository userPlantsRepository) {
         this.userPlantsRepository = userPlantsRepository;
     }
-    public List<UserPlants> findAllUserPlantsByUser(Long id){
+    public List<UserPlants> findAllUserPlantsByUserId(Long id){
 
         return userPlantsRepository.findAllUserPlantsByUserId(id);
     }

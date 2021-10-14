@@ -3,8 +3,9 @@
 
 <html>
 <body>
-<form:form method="post" action="/userPage" modelAttribute="plant">
-    NAZWA: <form:input path="name"></form:input><br/>
+<a href="/dashboard">Wroc!</a><br/>
+<form:form method="post" action="/createNewPlant" modelAttribute="plant">
+    NAZWA: <form:input path="name"></form:input><br/><br/>
     TYP:
     <form:select path="type">
             <form:option value="-" label="Wybierz typ"/>
@@ -13,16 +14,16 @@
             <form:option value="Warzywo"/>
     </form:select><br/>
     OPIS:
-    <form:textarea path="description"/><<br/>
+    <form:textarea path="description"/><<br/><br/>
     TYP GLEBY:
-    <form:input path="soilType"/><br/>
+    <form:input path="soilType"/><br/><br/>
     MIEJSCE SLONECZNE?
     <form:select path="sunnySpot">
         <form:option value="-" label="TAK/NIE"/>
             <form:option value="TAK"/>
             <form:option value="NIE"/>
-    </form:select><br/>
-    OKRES WEGETACJI: <form:input path="vegetationPeriod"></form:input><br/>
+    </form:select><br/><br/>
+    OKRES WEGETACJI: <form:input path="vegetationPeriod"></form:input><br/><br/>
     CO ILE DNI PODLEWAC?:
     <form:select path="wateringInterval">
             <form:option value="-" label="Dni"/>
@@ -36,10 +37,11 @@
             <form:option value="8"/>
             <form:option value="9"/>
             <form:option value="10"/>
-    </form:select><br/>
-    <input type="submit" value="Dodaj nowa rosline">
+    </form:select><br/><br/>
+    <input type="submit" value="Dodaj nowa rosline"><br/>
+    <hr>
 </form:form>
-
+<a href="/dashboard">Wroc!</a><br/>
 
 </body>
 

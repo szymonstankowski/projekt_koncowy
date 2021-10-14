@@ -50,7 +50,7 @@ public class UserPlantsController {
 
         userPlantsService.savePlant(userPlants);
         model.addAttribute("user", user);
-        model.addAttribute("userPlants", userPlantsService.findAllUserPlantsByUser(user.getId()));
+        model.addAttribute("userPlants", userPlantsService.findAllUserPlantsByUserId(user.getId()));
         model.addAttribute("plant", plant1);
         return "user-page";
     }
@@ -87,7 +87,7 @@ public class UserPlantsController {
             userPlantsService.savePlant(userPlants);
 
             model.addAttribute("user", user);
-            model.addAttribute("userPlants", userPlantsService.findAllUserPlantsByUser(user.getId()));
+            model.addAttribute("userPlants", userPlantsService.findAllUserPlantsByUserId(user.getId()));
         }
         return "user-page";
     }

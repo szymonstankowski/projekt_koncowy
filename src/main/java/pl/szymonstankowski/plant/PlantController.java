@@ -33,17 +33,6 @@ public class PlantController {
         return "home-page";
     }
 
-    @GetMapping("/deleteAdminPlants")
-    public String deleteAdminPlants(Model model) {
-        model.addAttribute("plants", plantService.getPlants());
-        return "delete-admin-plants";
-    }
 
-    @PostMapping("/deleteAdminPlants")
-    public String deletePlant(@PathVariable Long id) {
-        Plant plantById = plantService.findPlantById(id);
-        plantService.deletePlant(plantById);
-        return "redirect:/deleteAdminPlants";
-    }
 
 }

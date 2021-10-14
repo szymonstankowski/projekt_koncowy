@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 
 @Configuration
@@ -44,14 +45,21 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout()
                 .logoutSuccessUrl("/");
         http.authorizeRequests()
+
                 .antMatchers("/userPage").hasRole("USER")
                 .antMatchers("/addNewUser").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/").permitAll()
                 .and()
-                .formLogin().defaultSuccessUrl("/dashboard");
+                .formLogin()
+                .loginProcessingUrl("/login")
+                .successHandler(myAuthenticationSuccessHandler());
     }
 
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+        return new MySimpleUrlAuthenticationSuccessHandler();
+    }
 
 
 }

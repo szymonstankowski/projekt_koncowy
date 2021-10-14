@@ -32,7 +32,12 @@ public class User implements UserDetails {
     @OneToMany
     List<UserPlants> userPlants;
 
+    public User(String admin, String admin1, List<GrantedAuthority> role_admin) {
+    }
 
+    public User() {
+
+    }
 
 
     @Override
