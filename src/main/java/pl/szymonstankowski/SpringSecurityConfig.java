@@ -41,14 +41,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().disable();
         http.csrf().disable();
         http.headers().disable();
+        http.logout()
+                .logoutSuccessUrl("/");
         http.authorizeRequests()
-
                 .antMatchers("/userPage").hasRole("USER")
                 .antMatchers("/addNewUser").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/").permitAll()
                 .and()
                 .formLogin().defaultSuccessUrl("/dashboard");
-
     }
+
+
+
 }
