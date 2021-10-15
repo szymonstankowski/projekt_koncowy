@@ -61,10 +61,11 @@ public class UserPlantsController {
         return "user-page";
     }
 
-    //nie mozna usunac plantById bo ma on relacje i jego klucz znajduje sie w tablicyy user_plant
+//  nie usuwac roslity tylko dodac w tabeli plant dodatkowa kolumne usunieto (true/false) i
+    //pozmieniac w akcjach i metodach tak zeby ustawiony przez admina status pokazywal badz nie pokazywal userowi ta rosline
+    //to samo mozna zrobic z userem ale nie trzeba
     @GetMapping("/deletePlantByAdmin/{id}")
     public String deleteUserPlantByAdmin(@PathVariable Long id) {
-        userPlantsService.deleteUserPlantsByPlantId(id);
         plantService.deletePlantById(id);
         return "redirect:/adminDashboard";
     }

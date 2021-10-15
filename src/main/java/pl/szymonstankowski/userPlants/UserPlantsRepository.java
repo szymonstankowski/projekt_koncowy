@@ -10,6 +10,5 @@ public interface UserPlantsRepository extends JpaRepository<UserPlants, Long> {
 
     List<UserPlants> findAllUserPlantsByUserId(Long id);
 
-    void deleteUserPlantsByPlantId(Long id);
 
 }
