@@ -1,10 +1,11 @@
 package pl.szymonstankowski.plant;
 
 import lombok.Data;
+import pl.szymonstankowski.userPlants.UserPlants;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -24,6 +25,9 @@ public class Plant {
     private String wateringInterval;
     private String sunnySpot;
     private boolean editable;
+
+
+
 
 
 }
