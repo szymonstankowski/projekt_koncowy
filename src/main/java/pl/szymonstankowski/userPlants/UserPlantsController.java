@@ -28,9 +28,15 @@ public class UserPlantsController {
         this.userService = userService;
     }
 
-    @GetMapping("/plantList")
+    @GetMapping("/userPlantList")
     public String choosePlant(Model model) {
-        model.addAttribute("plants", plantService.getPlants());
+        List<Plant> plants = plantService.getPlants();
+        for (Plant plant : plants) {
+            if (plant.isActive()){
+                plants.add(plant);
+            }
+        }
+        model.addAttribute("plants", plants);
         return "plants";
     }
 
@@ -64,9 +70,11 @@ public class UserPlantsController {
 //  nie usuwac roslity tylko dodac w tabeli plant dodatkowa kolumne usunieto (true/false) i
     //pozmieniac w akcjach i metodach tak zeby ustawiony przez admina status pokazywal badz nie pokazywal userowi ta rosline
     //to samo mozna zrobic z userem ale nie trzeba
-    @GetMapping("/deletePlantByAdmin/{id}")
-    public String deleteUserPlantByAdmin(@PathVariable Long id) {
-        plantService.deletePlantById(id);
+    @GetMapping("/markNotActiveByAdmin/{id}")
+    public String markNotActiveByAdmin(@PathVariable Long id) {
+        Plant plant = plantService.findPlantById(id);
+        plant.setActive(false);
+        plantService.setPlantToNotActive(plant);
         return "redirect:/adminDashboard";
     }
 

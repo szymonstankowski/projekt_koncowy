@@ -25,6 +25,7 @@ public class Plant {
     private String wateringInterval;
     private String sunnySpot;
     private boolean editable;
+    private boolean active;
 
 
 

@@ -67,15 +67,14 @@ public class UserController {
         userService.deleteUserById(user.getId());
         return "redirect:/";
     }
-    @GetMapping("/deleteUserByAdmin")
-    public String deleteUserByAdmin(Principal principal){
-        String name = principal.getName();
-        User user = userService.getUserByName(name);
-        List<UserPlants> allUserPlantsByUser = userPlantsService.findAllUserPlantsByUserId(user.getId());
-        for (UserPlants userPlants : allUserPlantsByUser) {
+    @GetMapping("/deleteUserByAdmin/{id}")
+    public String deleteUserByAdmin(@PathVariable Long id){
+
+        List<UserPlants> allUserPlantsByUserId = userPlantsService.findAllUserPlantsByUserId(id);
+        for (UserPlants userPlants : allUserPlantsByUserId) {
             userPlantsService.deleteUserPlant(userPlants.getId());
         }
-        userService.deleteUserById(user.getId());
+        userService.deleteUserById(id);
         return "redirect:/adminDashboard";
     }
 

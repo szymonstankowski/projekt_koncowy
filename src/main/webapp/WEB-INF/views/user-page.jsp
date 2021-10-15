@@ -6,7 +6,7 @@
 <b>Witaj!</b> ${user.name}<br/>
 <a href="/deleteUser">Usun uzytkownika!</a>
 <hr>
-<a href="/plantList">Lista roslin do dodania</a>
+<a href="/userPlantList">Lista roslin do dodania</a>
 <hr>
 <a href="/addNewPlant">Dodaj wlasna rosline</a>
 <hr>

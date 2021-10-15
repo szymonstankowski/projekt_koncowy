@@ -24,7 +24,7 @@ public class PlantController {
         List<Plant> plants = plantService.getPlants();
         List<Plant> nonEditablePlantList = new ArrayList<>();
         for (Plant plant : plants) {
-            if (!plant.isEditable()) {
+            if (!plant.isEditable() && plant.isActive()) {
                 nonEditablePlantList.add(plant);
             }
         }

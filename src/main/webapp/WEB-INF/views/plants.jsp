@@ -11,7 +11,7 @@
 </h2>
 
 
-<c:forEach items="${plants}" var="plant">
+<c:forEach items="${userPlantList}" var="plant">
     <a href="/addPlant/${plant.id}">Dodaj</a>
     <br/>
     <u><b>${plant.name}</b></u>

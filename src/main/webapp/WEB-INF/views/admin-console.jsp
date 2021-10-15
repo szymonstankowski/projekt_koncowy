@@ -9,21 +9,24 @@ Witaj! Admin
 <h2>Wybierz uzytkownika do usuniecia</h2>
 <hr>
 <c:forEach items="${users}" var="user">
+    <a href="/deleteUserByAdmin/${user.id}">Usun tego uzytkownika</a><br/>
     <b>${user.name}</b><br/>
     <b>${user.email}</b><br/>
     <b>${user.role}</b><br/>
-    <a href="/deleteUserByAdmin">Usun tego uzytkownika</a>
+
     <hr>
 </c:forEach>
 <br/>
-<h2>Wybierz rosline do usuniecia</h2>
+<hr>
+<h2>Roslina do usuniecia</h2>
+<hr>
 <br/>
 <c:forEach items="${plants}" var="plant">
+    <a href="/markNotActiveByAdmin/${plant.id}">Roslina do usuniecia </a><br/>
     <b>${plant.name}</b><br/>
-    <b>${plant.id}</b><br/>
-    <a href="/deletePlantByAdmin/${plant.id}">Usun ta rosline</a>
+    <b>${plant.id}</b><br/><br/>
+    <b>${plant.active}</b><br/>
     <hr>
-
 </c:forEach>
 
 </body>
