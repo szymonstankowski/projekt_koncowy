@@ -1,25 +1,30 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <body>
-
+Witaj! Admin
 <b><a href="/logout">Wyloguj!</a> </b>
-
-<h2>Wybierz rosline do usuniecia</h2>
-<form:form method="post" action="/adminDashboard" modelAttribute="plants">
-    <br/>
-    <b>NAME: </b> ${plant.name}<br/><br/><a href="/adminDashboard/${plant.id}"><b>USUN ROSLINE<b/></a><br/><br/>
-    <b>DESCRIPTION: </b>${plant.description}<br/><br/>
-    <b>TYP GLEBY: </b>${plant.soilType}<br/><br/>
-    <b>OKRES WEGETACJI: </b>${plant.vegetationPeriod}<br/><br/>
-    <b>MIEJSCE SLONECZNE?: </b>${plant.sunnySpot}<br/><br/>
-    <b>PODLEWAC CO: </b>${plant.wateringInterval} DNI<br/><br/>
-    <hr>
-</form:form>
 <hr>
+<h2>Wybierz uzytkownika do usuniecia</h2>
+<hr>
+<c:forEach items="${users}" var="user">
+    <b>${user.name}</b><br/>
+    <b>${user.email}</b><br/>
+    <b>${user.role}</b><br/>
+    <a href="/deleteUserByAdmin">Usun tego uzytkownika</a>
+    <hr>
+</c:forEach>
+<br/>
+<h2>Wybierz rosline do usuniecia</h2>
+<br/>
+<c:forEach items="${plants}" var="plant">
+    <b>${plant.name}</b><br/>
+    <b>${plant.id}</b><br/>
+    <a href="/deletePlantByAdmin/${plant.id}">Usun ta rosline</a>
+    <hr>
 
-
+</c:forEach>
 
 </body>
 

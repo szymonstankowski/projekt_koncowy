@@ -23,7 +23,6 @@ public class PlantController {
     public String homePage(Model model) {
         List<Plant> plants = plantService.getPlants();
         List<Plant> nonEditablePlantList = new ArrayList<>();
-
         for (Plant plant : plants) {
             if (!plant.isEditable()) {
                 nonEditablePlantList.add(plant);

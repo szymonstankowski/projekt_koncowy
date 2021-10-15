@@ -1,6 +1,8 @@
 package pl.szymonstankowski.userPlants;
 
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
 import pl.szymonstankowski.plant.Plant;
 import pl.szymonstankowski.user.User;
 
@@ -20,9 +22,12 @@ public class UserPlants{
 
     @ManyToOne
     User user;
+
     @ManyToOne
     Plant plant;
 
     private LocalDate localDate;
+
+
 
 }

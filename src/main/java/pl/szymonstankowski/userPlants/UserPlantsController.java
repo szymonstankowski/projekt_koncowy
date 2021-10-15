@@ -28,7 +28,6 @@ public class UserPlantsController {
         this.userService = userService;
     }
 
-
     @GetMapping("/plantList")
     public String choosePlant(Model model) {
         model.addAttribute("plants", plantService.getPlants());
@@ -47,7 +46,6 @@ public class UserPlantsController {
 
         Plant plant1 = userPlants.getPlant();
 
-
         userPlantsService.savePlant(userPlants);
         model.addAttribute("user", user);
         model.addAttribute("userPlants", userPlantsService.findAllUserPlantsByUserId(user.getId()));
@@ -55,13 +53,20 @@ public class UserPlantsController {
         return "user-page";
     }
 
-
     @GetMapping("/deleteUserPlant/{id}")
     public String deleteUserPlant(@PathVariable Long id, Model model) {
         userPlantsService.deleteUserPlant(id);
         List<UserPlants> userPlants = userPlantsService.getAll();
         model.addAttribute("userPlants", userPlants);
         return "user-page";
+    }
+
+    //nie mozna usunac plantById bo ma on relacje i jego klucz znajduje sie w tablicyy user_plant
+    @GetMapping("/deletePlantByAdmin/{id}")
+    public String deleteUserPlantByAdmin(@PathVariable Long id) {
+        userPlantsService.deleteUserPlantsByPlantId(id);
+        plantService.deletePlantById(id);
+        return "redirect:/adminDashboard";
     }
 
     @GetMapping("/addNewPlant")

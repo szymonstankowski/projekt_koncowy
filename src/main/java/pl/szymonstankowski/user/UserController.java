@@ -67,19 +67,31 @@ public class UserController {
         userService.deleteUserById(user.getId());
         return "redirect:/";
     }
+    @GetMapping("/deleteUserByAdmin")
+    public String deleteUserByAdmin(Principal principal){
+        String name = principal.getName();
+        User user = userService.getUserByName(name);
+        List<UserPlants> allUserPlantsByUser = userPlantsService.findAllUserPlantsByUserId(user.getId());
+        for (UserPlants userPlants : allUserPlantsByUser) {
+            userPlantsService.deleteUserPlant(userPlants.getId());
+        }
+        userService.deleteUserById(user.getId());
+        return "redirect:/adminDashboard";
+    }
 
     @GetMapping("/adminDashboard")
     public String deleteAdminPlants(Model model) {
         model.addAttribute("plants", plantService.getPlants());
+        model.addAttribute("users", userService.getUsers());
         return "admin-console";
     }
 
-    @PostMapping("/adminDashboard")
-    public String deletePlant(@PathVariable Long id) {
-        Plant plantById = plantService.findPlantById(id);
-        plantService.deletePlant(plantById);
-        return "redirect:/deleteAdminPlants";
-    }
+//    @PostMapping("/adminDashboard")
+//    public String deletePlant(@PathVariable Long id) {
+//        Plant plantById = plantService.findPlantById(id);
+//        plantService.deletePlant(plantById);
+//        return "redirect:/deleteAdminPlants";
+//    }
 
 
 }

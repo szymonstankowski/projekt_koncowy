@@ -22,6 +22,10 @@ public class UserPlantsService {
         deleteAllUserPlantsByUserId(id);
     }
 
+    public void deleteUserPlantsByPlantId(Long id){
+        deleteUserPlantsByPlantId(id);
+    }
+
 
 
 
