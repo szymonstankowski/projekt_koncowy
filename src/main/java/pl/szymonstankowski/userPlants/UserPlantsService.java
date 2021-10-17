@@ -26,7 +26,9 @@ public class UserPlantsService {
         deleteUserPlantsByPlantId(id);
     }
 
-
+    public UserPlants findPlantById(Long id){
+        return userPlantsRepository.findById(id).orElse(null);
+    }
 
 
     public void savePlant(UserPlants userPlants){

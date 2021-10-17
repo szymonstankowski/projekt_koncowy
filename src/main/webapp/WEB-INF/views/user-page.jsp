@@ -17,7 +17,7 @@
     <!--<u><b></b></u>-->
     <br/>
     <b>NAME:</b> ${plant.plant.name}<br/><br/>
-    <b>DATA NASADZENIA:</b>${plant.localDate}<br/><br/>
+    <b>DATA NASADZENIA:</b>${plant.localDate}  <a href="/resetPlantClock/${plant.id}">Resetuj zegar</a><br/><br/>
     <b>OPIS:</b> ${plant.plant.description}<br/><br/>
     <b>TYP GLEBY:</b> ${plant.plant.soilType}<br/><br/>
     <b>OKRES WEGETACJI:</b> ${plant.plant.vegetationPeriod}<br/><br/>

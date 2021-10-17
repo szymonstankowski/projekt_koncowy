@@ -106,4 +106,18 @@ public class UserPlantsController {
         return "user-page";
     }
 
+    @GetMapping("/resetPlantClock/{id}")
+    public String podlano(@PathVariable Long id, Principal principal, Model model){
+        UserPlants userPlant = userPlantsService.findPlantById(id);
+        userPlant.setLocalDate(LocalDate.now());
+
+        String userName = principal.getName();
+        User user = userService.getUserByName(userName);
+
+        model.addAttribute("user", user);
+        model.addAttribute(userPlantsService.findAllUserPlantsByUserId(user.getId()));
+
+        return "user-page";
+    }
+
 }
