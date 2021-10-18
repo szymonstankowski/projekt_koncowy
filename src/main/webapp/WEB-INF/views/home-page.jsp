@@ -26,7 +26,7 @@
     <b>TYP GLEBY:</b> ${plant.soilType}
     <br/><hr><br/>
 
--</c:forEach>
+</c:forEach>
 
 <br/>
 </body>

@@ -1,11 +1,10 @@
 package pl.szymonstankowski.plant;
 
 import lombok.Data;
-import pl.szymonstankowski.userPlants.UserPlants;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.List;
+
 
 @Entity
 @Data
