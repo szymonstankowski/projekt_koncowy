@@ -1,15 +1,12 @@
 package pl.szymonstankowski.userPlants;
 
 import lombok.Data;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.OnDelete;
 import pl.szymonstankowski.plant.Plant;
 import pl.szymonstankowski.user.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.List;
+
 
 @Entity
 @Data
@@ -27,6 +24,9 @@ public class UserPlants{
     Plant plant;
 
     private LocalDate localDate;
+    private LocalDate dataKolejnegoPodlania;
+
+
 
 
 

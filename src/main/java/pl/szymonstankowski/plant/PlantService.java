@@ -22,8 +22,7 @@ public class PlantService {
     }
 
     public void savePlant(Plant plant){
-        plant.setActive(true);
-        plant.setEditable(true);
+
         plantRepository.save(plant);
     }
     public void setPlantToNotActive(Plant plant){

@@ -23,11 +23,16 @@ Witaj! Admin
 <br/>
 <c:forEach items="${plants}" var="plant">
     <a href="/markNotActiveByAdmin/${plant.id}">Roslina do usuniecia </a><br/>
+    <a href="/markActiveByAdmin/${plant.id}">Aktywuj roline </a><br/>
     <b>${plant.name}</b><br/>
     <b>${plant.id}</b><br/><br/>
     <b>${plant.active}</b><br/>
     <hr>
 </c:forEach>
+
+<br/>
+<hr>
+<a href="/newPlantByAdmin">Dodaj nowa rosline</a>
 
 </body>
 

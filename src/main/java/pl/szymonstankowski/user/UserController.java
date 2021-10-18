@@ -67,23 +67,7 @@ public class UserController {
         userService.deleteUserById(user.getId());
         return "redirect:/";
     }
-    @GetMapping("/deleteUserByAdmin/{id}")
-    public String deleteUserByAdmin(@PathVariable Long id){
 
-        List<UserPlants> allUserPlantsByUserId = userPlantsService.findAllUserPlantsByUserId(id);
-        for (UserPlants userPlants : allUserPlantsByUserId) {
-            userPlantsService.deleteUserPlant(userPlants.getId());
-        }
-        userService.deleteUserById(id);
-        return "redirect:/adminDashboard";
-    }
-
-    @GetMapping("/adminDashboard")
-    public String deleteAdminPlants(Model model) {
-        model.addAttribute("plants", plantService.getPlants());
-        model.addAttribute("users", userService.getUsers());
-        return "admin-console";
-    }
 
 //    @PostMapping("/adminDashboard")
 //    public String deletePlant(@PathVariable Long id) {

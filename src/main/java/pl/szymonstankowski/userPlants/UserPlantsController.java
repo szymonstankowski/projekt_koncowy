@@ -29,14 +29,14 @@ public class UserPlantsController {
     }
 
     @GetMapping("/userPlantList")
-    public String choosePlant(Model model) {
+    public String plantList(Model model) {
         List<Plant> plants = plantService.getPlants();
         for (Plant plant : plants) {
             if (plant.isActive()){
                 plants.add(plant);
             }
+            model.addAttribute("plants", plants);
         }
-        model.addAttribute("plants", plants);
         return "plants";
     }
 
@@ -67,16 +67,8 @@ public class UserPlantsController {
         return "user-page";
     }
 
-//  nie usuwac roslity tylko dodac w tabeli plant dodatkowa kolumne usunieto (true/false) i
-    //pozmieniac w akcjach i metodach tak zeby ustawiony przez admina status pokazywal badz nie pokazywal userowi ta rosline
-    //to samo mozna zrobic z userem ale nie trzeba
-    @GetMapping("/markNotActiveByAdmin/{id}")
-    public String markNotActiveByAdmin(@PathVariable Long id) {
-        Plant plant = plantService.findPlantById(id);
-        plant.setActive(false);
-        plantService.setPlantToNotActive(plant);
-        return "redirect:/adminDashboard";
-    }
+
+
 
     @GetMapping("/addNewPlant")
     public String addNewPlant(Model model) {
@@ -85,20 +77,32 @@ public class UserPlantsController {
     }
 
     @PostMapping("/createNewPlant")
-    public String addNewPlant(Plant plant, BindingResult result, Principal principal, Model model) {
+    public String createNewPlant(Plant plant, BindingResult result, Principal principal, Model model) {
 
         if (result.hasErrors()) {
             return "redirect:/addNewPlant";
         } else {
             User user = userService.getUserByName(principal.getName());
+            plant.setEditable(true);
+            plant.setActive(true);
             plantService.savePlant(plant);
             UserPlants userPlants = new UserPlants();
-            userPlants.setLocalDate(LocalDate.now());
+
+            LocalDate date = LocalDate.now();
+            userPlants.setLocalDate(date);
+
             userPlants.setUser(user);
 
             Plant plant1 = plantService.findPlantById(plant.getId());
             userPlants.setPlant(plant1);
+
+            int interval = Integer.parseInt(plant1.getWateringInterval());
+
+            LocalDate dateAndInterval = date.plusDays(interval);
+            userPlants.setDataKolejnegoPodlania(dateAndInterval);
+
             userPlantsService.savePlant(userPlants);
+
 
             model.addAttribute("user", user);
             model.addAttribute("userPlants", userPlantsService.findAllUserPlantsByUserId(user.getId()));
@@ -106,18 +110,6 @@ public class UserPlantsController {
         return "user-page";
     }
 
-    @GetMapping("/resetPlantClock/{id}")
-    public String podlano(@PathVariable Long id, Principal principal, Model model){
-        UserPlants userPlant = userPlantsService.findPlantById(id);
-        userPlant.setLocalDate(LocalDate.now());
 
-        String userName = principal.getName();
-        User user = userService.getUserByName(userName);
-
-        model.addAttribute("user", user);
-        model.addAttribute(userPlantsService.findAllUserPlantsByUserId(user.getId()));
-
-        return "user-page";
-    }
 
 }

@@ -6,16 +6,14 @@
 <body>
 
 <br/>
-<h2>
-    <a href="/addNewPlant">Dodaj wlasna rosline</a><br/><br/>
+    <hr>
+    <a href="/">Strona usera</a> <br/>
 </h2>
+<hr>
 
 
-<c:forEach items="${plants}" var="plant">
-    <a href="/addPlant/${plant.id}">Dodaj</a>
-    <br/>
-    <u><b>${plant.name}</b></u>
-    <br/>
+<c:forEach items="${listOfPlants}" var="plant">
+    <u><b>${plant.name}</b></u><br/>
     <b>OPIS:</b> ${plant.description}
     <br/>
     <b>NAWADNIANIE CO:</b> ${plant.wateringInterval} dni
