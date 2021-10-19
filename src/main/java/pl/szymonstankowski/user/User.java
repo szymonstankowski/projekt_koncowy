@@ -1,6 +1,5 @@
 package pl.szymonstankowski.user;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,6 +27,8 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private String role;
+    private Boolean enabled = false;
+    private Boolean locked = false;
 
     @OneToMany
     List<UserPlants> userPlants;

@@ -1,7 +1,5 @@
 package pl.szymonstankowski;
 
-
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,18 +16,17 @@ import java.util.*;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final static String USER_NOT_FOUND_MSG ="User %s not found!";
 
     public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<User> user = userRepository.findUserByName(username);
-
-       return user.orElseThrow(()-> new UsernameNotFoundException("User not found "+ username));
+       return userRepository.findUserByName(username)
+               .orElseThrow(()-> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG,username)));
     }
 
     private Map<String, User> roles = new HashMap<>();

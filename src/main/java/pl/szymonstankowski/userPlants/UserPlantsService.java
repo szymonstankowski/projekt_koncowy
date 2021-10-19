@@ -1,8 +1,6 @@
 package pl.szymonstankowski.userPlants;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-import pl.szymonstankowski.user.User;
 
 import java.util.List;
 
@@ -29,7 +27,6 @@ public class UserPlantsService {
     public UserPlants findPlantById(Long id){
         return userPlantsRepository.findById(id).orElse(null);
     }
-
 
     public void savePlant(UserPlants userPlants){
         userPlantsRepository.save(userPlants);

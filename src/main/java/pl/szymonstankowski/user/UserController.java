@@ -4,8 +4,8 @@ package pl.szymonstankowski.user;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import pl.szymonstankowski.plant.Plant;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.szymonstankowski.plant.PlantService;
 import pl.szymonstankowski.userPlants.UserPlants;
 import pl.szymonstankowski.userPlants.UserPlantsService;
@@ -20,14 +20,11 @@ public class UserController {
     private final PlantService plantService;
     private final UserPlantsService userPlantsService;
 
-
     public UserController(UserService userService, PlantService plantService, UserPlantsService userPlantsService) {
         this.userService = userService;
         this.plantService = plantService;
         this.userPlantsService = userPlantsService;
     }
-
-
 
     @GetMapping("/addNewUser")
     public String createUser(Model model){
@@ -67,14 +64,5 @@ public class UserController {
         userService.deleteUserById(user.getId());
         return "redirect:/";
     }
-
-
-//    @PostMapping("/adminDashboard")
-//    public String deletePlant(@PathVariable Long id) {
-//        Plant plantById = plantService.findPlantById(id);
-//        plantService.deletePlant(plantById);
-//        return "redirect:/deleteAdminPlants";
-//    }
-
 
 }

@@ -71,8 +71,6 @@ public class UserPlantsController {
     }
 
 
-
-
     @GetMapping("/addNewPlant")
     public String addNewPlant(Model model) {
         model.addAttribute("plant", new Plant());
@@ -112,7 +110,5 @@ public class UserPlantsController {
         }
         return "user-page";
     }
-
-
 
 }

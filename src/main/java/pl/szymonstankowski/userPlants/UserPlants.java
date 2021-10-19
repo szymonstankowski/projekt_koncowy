@@ -26,8 +26,4 @@ public class UserPlants{
     private LocalDate localDate;
     private LocalDate dataKolejnegoPodlania;
 
-
-
-
-
 }

@@ -60,7 +60,6 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
                             + targetUrl);
             return;
         }
-
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
     protected String determineTargetUrl(final Authentication authentication) {
@@ -76,7 +75,6 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
                 return roleTargetUrlMap.get(authorityName);
             }
         }
-
         throw new IllegalStateException();
     }
 
