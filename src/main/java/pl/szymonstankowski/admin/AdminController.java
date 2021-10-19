@@ -55,7 +55,6 @@ public class AdminController {
         return "redirect:/adminDashboard";
     }
 
-
     @GetMapping("/markNotActiveByAdmin/{id}")
     public String markNotActiveByAdmin(@PathVariable Long id) {
         Plant plant = plantService.findPlantById(id);
@@ -72,11 +71,18 @@ public class AdminController {
         return "redirect:/adminDashboard";
     }
 
-    @GetMapping("/resetPlantClock/{id}")
-    public String podlano(@PathVariable Long id){
-        UserPlants userPlant = userPlantsService.findPlantById(id);
-        userPlant.setLocalDate(LocalDate.now());
+    @GetMapping("/resetPlantClock/{userPlantId}/{plantId}")
+    public String podlano(@PathVariable Long userPlantId, @PathVariable Long plantId){
+        UserPlants userPlant = userPlantsService.findPlantById(userPlantId);
+        Plant plant = plantService.findPlantById(plantId);
 
+        String wateringInterval = plant.getWateringInterval();
+        Long l = Long.parseLong(wateringInterval);
+
+        userPlant.setLocalDate(LocalDate.now());
+        userPlant.setDataKolejnegoPodlania(LocalDate.now().plusDays(l));
+
+        userPlantsService.savePlant(userPlant);
         return "redirect:/dashboard";
     }
 
@@ -90,8 +96,5 @@ public class AdminController {
         userService.deleteUserById(id);
         return "redirect:/adminDashboard";
     }
-
-
-
 
 }

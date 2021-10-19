@@ -31,8 +31,11 @@ public class UserPlantsController {
     @GetMapping("/userPlantList")
     public String plantList(Model model) {
         List<Plant> plants = plantService.getPlants();
+        if (plants.isEmpty()){
+            return "redirect:/dashboard";
+        }
         for (Plant plant : plants) {
-            if (plant.isActive()){
+            if (!plant.isActive()){
                 plants.add(plant);
             }
             model.addAttribute("plants", plants);

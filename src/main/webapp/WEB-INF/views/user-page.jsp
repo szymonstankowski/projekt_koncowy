@@ -17,7 +17,7 @@
     <!--<u><b></b></u>-->
     <br/>
     <b>NAME:</b> ${plant.plant.name}<br/><br/>
-    <b>DATA NASADZENIA:</b>${plant.localDate}  <a href="/resetPlantClock/${plant.id}">Podlano!</a><br/><br/>
+    <b>DATA NASADZENIA:</b>${plant.localDate}  <a href="/resetPlantClock/${plant.id}/${plant.plant.id}">Podlano!</a><br/><br/>
     <b>DATA KOLEJNEGO PODLANIA:</b> ${plant.dataKolejnegoPodlania}<br/><br/>
     <b>OPIS:</b> ${plant.plant.description}<br/><br/>
     <b>TYP GLEBY:</b> ${plant.plant.soilType}<br/><br/>
