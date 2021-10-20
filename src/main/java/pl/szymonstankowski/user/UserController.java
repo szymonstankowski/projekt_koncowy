@@ -3,9 +3,7 @@ package pl.szymonstankowski.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import pl.szymonstankowski.plant.PlantService;
 import pl.szymonstankowski.userPlants.UserPlants;
 import pl.szymonstankowski.userPlants.UserPlantsService;
@@ -26,21 +24,6 @@ public class UserController {
         this.userPlantsService = userPlantsService;
     }
 
-    @GetMapping("/addNewUser")
-    public String createUser(Model model){
-        model.addAttribute("user", new User());
-        return "user-form";
-    }
-    @PostMapping("/addNewUser")
-    public String addUser(User user, BindingResult result, Model model){
-        if (result.hasErrors()){
-            return "user-form";
-        }else {
-            userService.saveUser(user);
-            model.addAttribute("user", user);
-            return "redirect:/login";
-        }
-    }
 
     @GetMapping("/dashboard")
     public String userPage(Model model, Principal principal){

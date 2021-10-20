@@ -54,4 +54,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public String signUp(User user){
+        return "";
+    }
+
 }
