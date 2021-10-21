@@ -36,6 +36,10 @@ public class User implements UserDetails {
     public User(String admin, String admin1, List<GrantedAuthority> role_admin) {
     }
 
+    public User(String name, @Email String email, String password, String role) {
+
+    }
+
     public User() {
 
     }
@@ -68,7 +72,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 
     public String getPassword(){

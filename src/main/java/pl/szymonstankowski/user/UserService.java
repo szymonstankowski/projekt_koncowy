@@ -23,6 +23,8 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_USER");
         userRepository.save(user);
+
+        //TODO: dopisac tworzenia i zapisywanie tokena
     }
 
     public User getUserByLogin(String login){
