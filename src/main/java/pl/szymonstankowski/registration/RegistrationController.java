@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pl.szymonstankowski.user.User;
 import pl.szymonstankowski.user.UserService;
 
@@ -15,12 +17,14 @@ import javax.validation.Valid;
 public class RegistrationController {
 
     private final UserService userService;
+    private final RegistrationService registrationService;
 
 
 
-    public RegistrationController(UserService userService) {
+    public RegistrationController(UserService userService, RegistrationService registrationService) {
         this.userService = userService;
 
+        this.registrationService = registrationService;
     }
 
 
@@ -30,6 +34,7 @@ public class RegistrationController {
         return "user-form";
     }
     @PostMapping("/registerNewUser")
+    @ResponseBody
     public String register (@Valid User user, BindingResult result, Model model){
         if (result.hasErrors()){
             return "user-form";
@@ -37,8 +42,14 @@ public class RegistrationController {
 
             userService.saveUser(user);
             model.addAttribute("user", user);
-            return "redirect:/login";
+            return "Sprawdz swojego poczte i potwierdz email!";
         }
+    }
+
+    @GetMapping("/confirm")
+    public String confirm(@RequestParam("token") String token){
+        registrationService.confirmToken(token);
+        return "redirect:/login";
     }
 
 

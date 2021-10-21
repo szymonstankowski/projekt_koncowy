@@ -79,8 +79,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public int enableAppUser(String email) {
-        return userRepository.enableUser(email);
+    public void enableAppUser(String email) {
+         userRepository.enableUser(email);
     }
 
 
