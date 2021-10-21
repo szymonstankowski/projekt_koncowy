@@ -37,7 +37,10 @@ public class User implements UserDetails {
     }
 
     public User(String name, @Email String email, String password, String role) {
-
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
     public User() {
