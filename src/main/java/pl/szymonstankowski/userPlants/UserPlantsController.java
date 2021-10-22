@@ -31,18 +31,23 @@ public class UserPlantsController {
 
     @GetMapping("/userPlantList")
     public String plantList(Model model) {
+
         List<Plant> plants = plantService.getPlants();
 
         List<Plant> activePlants = new ArrayList<>();
         if (plants.isEmpty()){
-            return "redirect:/";
+            return "redirect:/";   
         }
+      
+        List<Plant> activePlants = new ArrayList<>();
         for (Plant plant : plants) {
+
             if (plant.isActive()){
                 activePlants.add(plant);
         }
-        model.addAttribute("plants", activePlants);
-        }
+          model.addAttribute("plants", activePlants);
+          }
+        
         return "plants";
     }
 

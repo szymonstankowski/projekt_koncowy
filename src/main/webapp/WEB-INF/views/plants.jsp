@@ -9,6 +9,9 @@
 <h2>
     <a href="/addNewPlant">Dodaj wlasna rosline</a><br/><br/>
 </h2>
+<hr>
+<a href="/dashboard">Wroc</a><br/><br/>
+<hr>
 
 
 <c:forEach items="${plants}" var="plant">
