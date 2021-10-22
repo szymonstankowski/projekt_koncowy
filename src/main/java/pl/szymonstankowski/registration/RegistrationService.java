@@ -26,21 +26,30 @@ public class RegistrationService {
         this.emailSender = emailSender;
     }
 
-    public void register(User user){
+    public String register(User user){
         boolean test = emailValidatorService.test(user.getEmail());
         if (!test){
             throw new IllegalStateException("email not valid");
         }
 
-         userService.saveUser(new User(
-                user.getName(),
-                user.getEmail(),
-                user.getPassword(),
-                user.getRole()
-        ));
-        String token = "";
+        String token = userService.saveUser(
+                new User(
+                        user.getName(),
+                        user.getEmail(),
+                        user.getPassword(),
+                        user.getRole()
+                )
+        );
+//         userService.saveUser(new User(
+//                user.getName(),
+//                user.getEmail(),
+//                user.getPassword(),
+//                user.getRole()
+//        ));
+
         String link = "http://localhost:8080/confirm?token="+token;
         emailSender.send(user.getEmail(), buildEmail(user.getName(), link));
+        return token;
     }
 
     @Transactional

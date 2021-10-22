@@ -26,11 +26,13 @@ public class EmailService implements EmailSender{
 
         try {
             MimeMessage message = mailSender.createMimeMessage();
+
             MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");
             helper.setText(email, true);
             helper.setTo(to);
             helper.setSubject("Potwierdz swoj email");
             helper.setFrom("twojeroslinki@wp.pl");
+            mailSender.send(message);
 
         }catch (MessagingException e){
             LOGGER.error("nieudane wyslanie maila", e);

@@ -25,7 +25,7 @@ public class UserService {
         this.confirmationTokenService = confirmationTokenService;
     }
 
-    public void saveUser(User user){
+    public String saveUser(User user){
         boolean exists = userRepository.findUserByEmail(user.getEmail()).isPresent();
 
         if (exists){
@@ -48,6 +48,7 @@ public class UserService {
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
         //TODO: send email
+        return token;
     }
 
     public User getUserByLogin(String login){

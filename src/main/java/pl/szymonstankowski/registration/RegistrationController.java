@@ -6,7 +6,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import pl.szymonstankowski.user.User;
 import pl.szymonstankowski.user.UserService;
 
@@ -34,19 +33,17 @@ public class RegistrationController {
         return "user-form";
     }
     @PostMapping("/registerNewUser")
-    @ResponseBody
     public String register (@Valid User user, BindingResult result, Model model){
         if (result.hasErrors()){
             return "user-form";
         }else {
-
-            registrationService.register(user);
             model.addAttribute("user", user);
-            return "Sprawdz swojego poczte i potwierdz email!";
+          //  return "Sprawdz swojego poczte i potwierdz email!";
+            return registrationService.register(user);
         }
     }
 
-    @GetMapping("/confirm")
+    @GetMapping("/confirm?token=")
     public String confirm(@RequestParam("token") String token){
         registrationService.confirmToken(token);
         return "redirect:/login";
