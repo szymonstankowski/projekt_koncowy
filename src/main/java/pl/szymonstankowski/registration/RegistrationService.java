@@ -2,6 +2,7 @@ package pl.szymonstankowski.registration;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.szymonstankowski.email.EmailSender;
 import pl.szymonstankowski.registration.token.ConfirmationToken;
 import pl.szymonstankowski.registration.token.ConfirmationTokenService;
 import pl.szymonstankowski.user.User;
@@ -15,12 +16,14 @@ public class RegistrationService {
     private final EmailValidatorService emailValidatorService;
     private final UserService userService;
     private final ConfirmationTokenService confirmationTokenService;
+    private final EmailSender emailSender;
 
 
-    public RegistrationService(EmailValidatorService emailValidatorService, UserService userService, ConfirmationTokenService confirmationTokenService) {
+    public RegistrationService(EmailValidatorService emailValidatorService, UserService userService, ConfirmationTokenService confirmationTokenService, EmailSender emailSender) {
         this.emailValidatorService = emailValidatorService;
         this.userService = userService;
         this.confirmationTokenService = confirmationTokenService;
+        this.emailSender = emailSender;
     }
 
     public void register(User user){
@@ -35,6 +38,9 @@ public class RegistrationService {
                 user.getPassword(),
                 user.getRole()
         ));
+        String token = "";
+        String link = "http://localhost:8080/confirm?token="+token;
+        emailSender.send(user.getEmail(), buildEmail(user.getName(), link));
     }
 
     @Transactional
@@ -115,7 +121,7 @@ public class RegistrationService {
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
                 "      <td style=\"font-family:Helvetica,Arial,sans-serif;font-size:19px;line-height:1.315789474;max-width:560px\">\n" +
                 "        \n" +
-                "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + name + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> Thank you for registering. Please click on the below link to activate your account: </p><blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> <a href=\"" + link + "\">Activate Now</a> </p></blockquote>\n Link will expire in 15 minutes. <p>See you soon</p>" +
+                "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + name + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> Dziekujemy za rejestracje. Kliknij na link ponizej i aktywuj swoje konto: </p><blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> <a href=\"" + link + "\">Aktywuj konto</a> </p></blockquote>\n Link jest wazny przez 15 minut. <p>Do zobaczenia</p>" +
                 "        \n" +
                 "      </td>\n" +
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +

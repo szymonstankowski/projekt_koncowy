@@ -40,7 +40,7 @@ public class RegistrationController {
             return "user-form";
         }else {
 
-            userService.saveUser(user);
+            registrationService.register(user);
             model.addAttribute("user", user);
             return "Sprawdz swojego poczte i potwierdz email!";
         }
