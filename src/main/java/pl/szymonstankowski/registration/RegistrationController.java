@@ -12,7 +12,6 @@ import pl.szymonstankowski.user.UserService;
 import javax.validation.Valid;
 
 @Controller
-
 public class RegistrationController {
 
     private final UserService userService;
@@ -39,12 +38,13 @@ public class RegistrationController {
         }else {
             model.addAttribute("user", user);
           //  return "Sprawdz swojego poczte i potwierdz email!";
-            return registrationService.register(user);
+            registrationService.register(user);
+            return "redirect:/";
         }
     }
 
-    @GetMapping("/confirm?token=")
-    public String confirm(@RequestParam("token") String token){
+    @GetMapping("/confirm")
+    public String confirm(@RequestParam(name = "token") String token){
         registrationService.confirmToken(token);
         return "redirect:/login";
     }
