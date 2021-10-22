@@ -18,5 +18,4 @@ public class FloraManagerApplication extends SpringBootServletInitializer {
 		SpringApplication.run(FloraManagerApplication.class, args);
 	}
 
-
 }

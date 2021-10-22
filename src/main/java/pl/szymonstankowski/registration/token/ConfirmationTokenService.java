@@ -9,7 +9,6 @@ import java.util.Optional;
 @Service
 public class ConfirmationTokenService {
 
-
     private final ConfirmationTokenRepository confirmationTokenRepository;
 
     public ConfirmationTokenService(ConfirmationTokenRepository confirmationTokenRepository) {

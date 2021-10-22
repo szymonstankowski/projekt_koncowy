@@ -24,7 +24,6 @@ public class UserController {
         this.userPlantsService = userPlantsService;
     }
 
-
     @GetMapping("/dashboard")
     public String userPage(Model model, Principal principal){
         String name = principal.getName();
