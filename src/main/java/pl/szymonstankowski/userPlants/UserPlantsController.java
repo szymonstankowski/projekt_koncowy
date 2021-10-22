@@ -13,6 +13,7 @@ import pl.szymonstankowski.user.UserService;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,16 +31,19 @@ public class UserPlantsController {
 
     @GetMapping("/userPlantList")
     public String plantList(Model model) {
+
         List<Plant> plants = plantService.getPlants();
         if (plants.isEmpty()){
-            return "redirect:/dashboard";
+            return "redirect:/addNewPlant";
         }
+        List<Plant> activePlants = new ArrayList<>();
         for (Plant plant : plants) {
-            if (!plant.isActive()){
-                plants.add(plant);
+            if (plant.isActive()) {
+                activePlants.add(plant);
             }
-            model.addAttribute("plants", plants);
         }
+        model.addAttribute("plants", activePlants);
+
         return "plants";
     }
 

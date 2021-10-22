@@ -3,6 +3,9 @@
 
 <html>
 <body>
+<hr>
+<a href="/">Wroc</a><br/><br/>
+<hr>
 
 <form:form method="post" action="/addNewUser" modelAttribute="user">
     Email: <form:input path="email"/><br/><br/>
