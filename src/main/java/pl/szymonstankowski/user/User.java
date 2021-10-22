@@ -36,10 +36,15 @@ public class User implements UserDetails {
     public User(String admin, String admin1, List<GrantedAuthority> role_admin) {
     }
 
-    public User() {
-
+    public User(String name, @Email String email, String password, String role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
+    public User() {
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -68,7 +73,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 
     public String getPassword(){

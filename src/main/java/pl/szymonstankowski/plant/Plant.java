@@ -1,10 +1,8 @@
 package pl.szymonstankowski.plant;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-
 
 @Entity
 @Data
@@ -25,9 +23,5 @@ public class Plant {
     private String sunnySpot;
     private boolean editable;
     private boolean active;
-
-
-
-
 
 }
