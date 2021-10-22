@@ -6,7 +6,7 @@
 <body>
 
 <br/>
-<h2><a href="/addNewUser">Rejestracja</a>
+<h2><a href="/registration">Rejestracja</a>
     <hr>
     <a href="/login">Login</a> <br/>
 </h2>

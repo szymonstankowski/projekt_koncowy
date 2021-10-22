@@ -30,6 +30,4 @@ public class PlantController {
         return "home-page";
     }
 
-
-
 }

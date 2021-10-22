@@ -7,7 +7,7 @@
 <a href="/">Wroc</a><br/><br/>
 <hr>
 
-<form:form method="post" action="/addNewUser" modelAttribute="user">
+<form:form method="post" action="/registerNewUser" modelAttribute="user">
     Email: <form:input path="email"/><br/><br/>
     Login: <form:input path="name"/><br/><br/>
     Haslo: <form:input type="password" path="password"/><br/><br/>
