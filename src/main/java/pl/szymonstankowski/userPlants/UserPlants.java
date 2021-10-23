@@ -23,7 +23,11 @@ public class UserPlants{
     @ManyToOne
     Plant plant;
 
+    //TODO MM: Ok jest jakaś data, ale nie wiem data czego. Pola na encjach powinny mieć wymiar biznesowy (techniczne też
+    //TODO MM: znajdziesz, ale będzie ich zdecydowanie mniej). Moźnaby doczepić dlaczego używasz LocalDate a nie LocalDateTime ale do szczegół.
     private LocalDate localDate;
+
+    //TODO MM: To jest okropne. Dlaczego in polish? Moźnaby doczepić dlaczego używasz LocalDate a nie LocalDateTime ale do szczegół.
     private LocalDate dataKolejnegoPodlania;
 
 }

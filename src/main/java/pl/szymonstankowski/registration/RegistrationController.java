@@ -11,9 +11,12 @@ import pl.szymonstankowski.user.UserService;
 
 import javax.validation.Valid;
 
+//TODO MM: do poprawy formatownie
 @Controller
 public class RegistrationController {
 
+
+    //TODO MM: nieużywane
     private final UserService userService;
     private final RegistrationService registrationService;
 

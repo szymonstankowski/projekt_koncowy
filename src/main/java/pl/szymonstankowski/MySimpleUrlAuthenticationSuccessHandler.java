@@ -19,12 +19,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+//TODO MM: w złym miejscu jest ten handler, powinien być przy konfiguracji sekurity
 public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     protected Log logger = LogFactory.getLog(this.getClass());
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
+    //TODO MM: to chyba zbędne bo jakaś autokonfiguracja powinna to zrobić.
+    //TODO MM: Jak już chcesz postawić jakiegoś beana to popatrz na SimpleUrlAuthenticationSuccessHandler
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                         Authentication authentication) throws IOException, ServletException {
@@ -32,6 +35,9 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         AuthenticationSuccessHandler.super.onAuthenticationSuccess(request, response, chain, authentication);
     }
 
+    //TODO MM: niepotrzebne imo
+    //TODO MM: odstępy między metodami
+    //TODO MM: metody mogą gyć prywatne
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
@@ -62,12 +68,17 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         }
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
+
+    //TODO MM: mogłeś nadpisać tylko tę jedną metodę (final w parametrze jest niepotrzebny)
+    //TODO MM: to też nie jest ładna praktyka że na bazie authentykacji przekierowujesz w różne miejsca na stronie
     protected String determineTargetUrl(final Authentication authentication) {
 
+        //TODO MM: ta mapa jako stała na klasie żeby jej nie tworzyć z każdym requestem
         Map<String, String> roleTargetUrlMap = new HashMap<>();
         roleTargetUrlMap.put("ROLE_USER", "/dashboard");
         roleTargetUrlMap.put("ROLE_ADMIN", "/adminDashboard");
 
+        //TODO MM: Pozbądz się tych finali
         final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (final GrantedAuthority grantedAuthority : authorities) {
             String authorityName = grantedAuthority.getAuthority();

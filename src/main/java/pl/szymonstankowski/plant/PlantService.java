@@ -21,6 +21,7 @@ public class PlantService {
         return plantRepository.getById(id);
     }
 
+    //TODO MM: tutaj w metodzie masz jedną linię za dużo
     public void savePlant(Plant plant){
 
         plantRepository.save(plant);
@@ -28,6 +29,7 @@ public class PlantService {
     public void setPlantToNotActive(Plant plant){
         plantRepository.save(plant);
     }
+    //TODO MM: nierówne formatowanie + te 2 metody masz nieużywane
     public void deletePlant(Plant plant){
         plantRepository.delete(plant);
     }

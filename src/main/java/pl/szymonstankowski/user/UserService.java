@@ -25,6 +25,7 @@ public class UserService {
         this.confirmationTokenService = confirmationTokenService;
     }
 
+    //TODO MM: a tutaj @Transactional by się przydał
     public String saveUser(User user){
         boolean exists = userRepository.findUserByEmail(user.getEmail()).isPresent();
 
@@ -37,6 +38,7 @@ public class UserService {
 
         userRepository.save(user);
 
+        //TODO MM: to tworzenie i zapisywanie tokena wyniósłbym do innego serwisu (możesz to wykorzystać w innym miejscu)
         String token = UUID.randomUUID().toString();
 
         ConfirmationToken confirmationToken = new ConfirmationToken(
@@ -57,6 +59,7 @@ public class UserService {
                 .orElseThrow(()-> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, login)));
     }
 
+    //TODO MM: niepotrzebny transactional
     @Transactional
     public void deleteUserById(Long id){
         userRepository.deleteById(id);
