@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class EmailService implements EmailSender {
 
     private final JavaMailSender mailSender;
+    //TODO MM: Nieużywane
     private final static Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
     @Override

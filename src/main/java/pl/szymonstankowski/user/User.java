@@ -33,6 +33,7 @@ public class User implements UserDetails {
     @OneToMany
     List<UserPlants> userPlants;
 
+    //TODO MM: W jakim celu trzymasz ten konstruktor?
     public User(String admin, String admin1, List<GrantedAuthority> role_admin) {
     }
 
@@ -46,6 +47,8 @@ public class User implements UserDetails {
     public User() {
     }
 
+    //TODO MM: UserDetails raczej implementujesz na serwisie niż na encji, bo encja nie musi nic wiedzieć o security.
+    //TODO MM: Dziwnie te metodki wyglądają jedynie.
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return  Collections.singleton(new SimpleGrantedAuthority(role));

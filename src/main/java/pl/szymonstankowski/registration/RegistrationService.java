@@ -27,11 +27,13 @@ public class RegistrationService {
     }
 
     public String register(User user){
+        //TODO MM: Wystarczyłby Util albo Predicate
         boolean test = emailValidatorService.test(user.getEmail());
         if (!test){
             throw new IllegalStateException("email not valid");
         }
 
+        //TODO MM: Moim zdaniem dziwne jest to że user service zwraca token
         String token = userService.saveUser(
                 new User(
                         user.getName(),
@@ -48,10 +50,13 @@ public class RegistrationService {
 
     @Transactional
     public String confirmToken(String token) {
+
+        //TODO MM: mógłbyś się pobawić optionalem i jego mapem
         ConfirmationToken confirmationToken = confirmationTokenService.getToken(token)
                 .orElseThrow(() ->
                         new IllegalStateException("token not found"));
 
+        //TODO MM: Każda z tych walidajji mogłaby być w osobnej metodzie
         if (confirmationToken.getConfirmedAt() != null) {
             throw new IllegalStateException("email already confirmed");
         }

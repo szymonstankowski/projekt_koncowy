@@ -16,7 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-
+//TODO MM: Klasa do zreformatowania
+//TODO MM: powinien znajdować sie w domenie usera
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -32,6 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                .orElseThrow(()-> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG,username)));
     }
 
+    //TODO MM: to chyba jest niepotrzebne skoro odpytujesz repo o usera
     private Map<String, User> roles = new HashMap<>();
 
     private List<GrantedAuthority> getAuthority(String role) {

@@ -14,6 +14,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findUserById(Long id);
     void deleteById(Long id);
 
+    //TODO MM: Tutaj ten @Transactional jest zbędny bo każda metoda w tym pliku będzie miała @Transactional.
     @Transactional
     @Modifying
     @Query("UPDATE User a " +
