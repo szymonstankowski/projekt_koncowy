@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.szymonstankowski.plant.Plant;
 import pl.szymonstankowski.plant.PlantService;
 import pl.szymonstankowski.user.UserService;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     private final PlantService plantService;
@@ -29,20 +31,20 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("/adminDashboard")
-    public String deleteAdminPlants(Model model) {
+    @GetMapping("/console")
+    public String managePlants(Model model) {
         model.addAttribute("plants", plantService.getPlants());
         model.addAttribute("users", userService.getUsers());
         return "admin-console";
     }
 
-    @GetMapping("/newPlantByAdmin")
-    public String newPlantByAdmin(Model model){
+    @GetMapping("/plant")
+    public String newPlantByAdmin(Model model) {
         model.addAttribute("plant", new Plant());
         return "new-admin-plant";
     }
 
-    @PostMapping("/newPlantByAdmin")
+    @PostMapping("/createPlant")
     public String createNewPlantByAdmin(@Valid Plant plant, BindingResult result) {
 
         if (result.hasErrors()) {
@@ -55,24 +57,20 @@ public class AdminController {
         return "redirect:/adminDashboard";
     }
 
-    @GetMapping("/markNotActiveByAdmin/{id}")
-    public String markNotActiveByAdmin(@PathVariable Long id) {
+    @GetMapping("/markPlant/{id}/{mark}")
+    public String markNotActive(@PathVariable Long id, @PathVariable int mark) {
         Plant plant = plantService.findPlantById(id);
-        plant.setActive(false);
-        plantService.setPlantToNotActive(plant);
-        return "redirect:/adminDashboard";
-    }
-
-    @GetMapping("/markActiveByAdmin/{id}")
-    public String markActiveByAdmin(@PathVariable Long id) {
-        Plant plant = plantService.findPlantById(id);
-        plant.setActive(true);
-        plantService.setPlantToNotActive(plant);
+        if (mark == 0) {
+            plant.setActive(false);
+        } else if (mark == 1) {
+            plant.setActive(true);
+        }
+        plantService.savePlant(plant);
         return "redirect:/adminDashboard";
     }
 
     @GetMapping("/resetPlantClock/{userPlantId}/{plantId}")
-    public String podlano(@PathVariable Long userPlantId, @PathVariable Long plantId){
+    public String podlano(@PathVariable Long userPlantId, @PathVariable Long plantId) {
         UserPlants userPlant = userPlantsService.findPlantById(userPlantId);
         Plant plant = plantService.findPlantById(plantId);
 
@@ -87,7 +85,7 @@ public class AdminController {
     }
 
     @GetMapping("/deleteUserByAdmin/{id}")
-    public String deleteUserByAdmin(@PathVariable Long id){
+    public String deleteUserByAdmin(@PathVariable Long id) {
 
         List<UserPlants> allUserPlantsByUserId = userPlantsService.findAllUserPlantsByUserId(id);
         for (UserPlants userPlants : allUserPlantsByUserId) {

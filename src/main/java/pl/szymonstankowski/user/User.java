@@ -8,9 +8,7 @@ import pl.szymonstankowski.userPlants.UserPlants;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Data
@@ -26,7 +24,7 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String email;
     private String password;
-    private String role;
+    private Map<String,String> role;
     private Boolean enabled = false;
     private Boolean locked = false;
 
@@ -36,11 +34,11 @@ public class User implements UserDetails {
     public User(String admin, String admin1, List<GrantedAuthority> role_admin) {
     }
 
-    public User(String name, @Email String email, String password, String role) {
+    public User(String name, @Email String email, String password, Map<String,String> role) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.role=role;
     }
 
     public User() {
@@ -48,7 +46,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return  Collections.singleton(new SimpleGrantedAuthority(role));
+        return  Collections.singleton(new SimpleGrantedAuthority(role.get(role)));
     }
 
     @Override

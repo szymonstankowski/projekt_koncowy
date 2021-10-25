@@ -1,4 +1,4 @@
-package pl.szymonstankowski;
+package pl.szymonstankowski.security.config;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -8,6 +8,7 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import pl.szymonstankowski.user.User;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -16,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
@@ -39,6 +39,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         handle(request, response, authentication);
         clearAuthenticationAttributes(request);
     }
+
     protected void clearAuthenticationAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
@@ -46,6 +47,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         }
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
     }
+
     protected void handle(
             HttpServletRequest request,
             HttpServletResponse response,
@@ -62,17 +64,18 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         }
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
-    protected String determineTargetUrl(final Authentication authentication) {
 
-        Map<String, String> roleTargetUrlMap = new HashMap<>();
-        roleTargetUrlMap.put("ROLE_USER", "/dashboard");
-        roleTargetUrlMap.put("ROLE_ADMIN", "/adminDashboard");
+    protected String determineTargetUrl(Authentication authentication) {
 
-        final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        for (final GrantedAuthority grantedAuthority : authorities) {
+        Map<String, String> role = new User().getRole();
+        role.put("ROLE_USER", "/dashboard");
+        role.put("ROLE_ADMIN", "/adminDashboard");
+
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        for (GrantedAuthority grantedAuthority : authorities) {
             String authorityName = grantedAuthority.getAuthority();
-            if(roleTargetUrlMap.containsKey(authorityName)) {
-                return roleTargetUrlMap.get(authorityName);
+            if (role.containsKey(authorityName)) {
+                return role.get(authorityName);
             }
         }
         throw new IllegalStateException();

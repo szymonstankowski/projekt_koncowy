@@ -22,8 +22,8 @@ Witaj! Admin
 <hr>
 <br/>
 <c:forEach items="${plants}" var="plant">
-    <a href="/markNotActiveByAdmin/${plant.id}">Roslina do usuniecia </a><br/>
-    <a href="/markActiveByAdmin/${plant.id}">Aktywuj roline </a><br/>
+    <a href="/markPlant/${plant.id}/{0}">Roslina do usuniecia </a><br/>
+    <a href="/markPlant/${plant.id}/{1}">Aktywuj rosline </a><br/>
     <b>${plant.name}</b><br/>
     <b>${plant.id}</b><br/><br/>
     <b>${plant.active}</b><br/>

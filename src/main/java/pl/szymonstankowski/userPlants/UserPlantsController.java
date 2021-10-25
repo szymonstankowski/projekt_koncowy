@@ -35,19 +35,17 @@ public class UserPlantsController {
         List<Plant> plants = plantService.getPlants();
 
         List<Plant> activePlants = new ArrayList<>();
-        if (plants.isEmpty()){
-            return "redirect:/";   
+        if (plants.isEmpty()) {
+            return "redirect:/";
         }
-      
-        List<Plant> activePlants = new ArrayList<>();
         for (Plant plant : plants) {
 
-            if (plant.isActive()){
+            if (plant.isActive()) {
                 activePlants.add(plant);
+            }
+            model.addAttribute("plants", activePlants);
         }
-          model.addAttribute("plants", activePlants);
-          }
-        
+
         return "plants";
     }
 

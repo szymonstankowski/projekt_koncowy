@@ -13,8 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import pl.szymonstankowski.MySimpleUrlAuthenticationSuccessHandler;
-import pl.szymonstankowski.UserDetailsServiceImpl;
+import pl.szymonstankowski.user.UserDetailsServiceImpl;
 
 import java.util.Properties;
 
@@ -66,7 +65,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider =
                 new DaoAuthenticationProvider();
         provider.setPasswordEncoder(getPasswordEncoder());
@@ -80,8 +79,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername("my.gmail@gmail.com");
-        mailSender.setPassword("password");
+        mailSender.setUsername("szymonstankowski1@gmail.com");
+        mailSender.setPassword("hbqqflorjtdnjtpf");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
