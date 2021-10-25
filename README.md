@@ -1,0 +1,4 @@
+# projekt_koncowy_CodersLab
+# PlantManager
+
+Aplikacja PlantManager pozwala utworzyć swoje konto, które następnie weryfikujemy tokenem otrzymanym na podanego przy rejestracji maila. Możemy do swojej kolekcji dodawać predefiniowane przez admina rośliny, które z powodzeniem można wyhodować np na balkonie. Otrzymujemy informacje kiedy roślina została posadzona(dodana do naszej kolekcji) jaki jest interwal podlewania, okres wegetacji oraz kiedy należy ponownie podlać roślinne i inne. Mamy możliwość dodania własnej rośliny wypełniając odpowiedni formularz lub w przyszłości ja usunąć z kolekcji. Aplikacja wykorzystuje SpringBoot, Hibernate, MySQL oraz JavaServlet Pages. Całość działa natomiast wymaga jeszcze dopracowania i upiększenia oraz dodania funkcjonalności wysyłania na mail przypomnienia o zbliżającym się terminie kolejnego podlania danej rośliny.
