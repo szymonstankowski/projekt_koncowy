@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -20,13 +21,13 @@ public class PlantController {
     @GetMapping()
     public String homePage(Model model) {
 
-        var nonEditablePlants = plantService.getPlants()
+        List<Plant> plantList = plantService.getPlants()
                 .stream()
                 .filter(plant -> !plant.isEditable())
-                .filter(Plant::isEditable)
+                .filter(Plant::isActive)
                 .collect(Collectors.toList());
 
-        model.addAttribute("listOfPlants", nonEditablePlants);
+        model.addAttribute("listOfPlants", plantList);
         return "home-page";
     }
 

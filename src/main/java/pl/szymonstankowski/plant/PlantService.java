@@ -25,12 +25,5 @@ public class PlantService {
 
         plantRepository.save(plant);
     }
-     public void deletePlant(Plant plant){
-        plantRepository.delete(plant);
-    }
-    public void deletePlantById(Long id){
-        plantRepository.deleteById(id);
-    }
-
 
 }
