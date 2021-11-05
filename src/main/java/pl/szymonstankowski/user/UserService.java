@@ -24,7 +24,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
         this.confirmationTokenService = confirmationTokenService;
     }
-
+    @Transactional
     public String saveUser(User user){
         boolean exists = userRepository.findUserByEmail(user.getEmail()).isPresent();
 
@@ -57,7 +57,7 @@ public class UserService {
                 .orElseThrow(()-> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, login)));
     }
 
-    @Transactional
+
     public void deleteUserById(Long id){
         userRepository.deleteById(id);
     }

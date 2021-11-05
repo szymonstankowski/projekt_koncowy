@@ -24,7 +24,7 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String email;
     private String password;
-    private Map<String,String> role;
+    private String role;
     private Boolean enabled = false;
     private Boolean locked = false;
 
@@ -34,7 +34,7 @@ public class User implements UserDetails {
     public User(String admin, String admin1, List<GrantedAuthority> role_admin) {
     }
 
-    public User(String name, @Email String email, String password, Map<String,String> role) {
+    public User(String name, @Email String email, String password, String role) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -46,7 +46,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return  Collections.singleton(new SimpleGrantedAuthority(role.get(role)));
+        return  Collections.singleton(new SimpleGrantedAuthority(role));
     }
 
     @Override
@@ -76,5 +76,9 @@ public class User implements UserDetails {
 
     public String getPassword(){
         return password;
+    }
+
+    public void setRole(String role_user) {
+
     }
 }

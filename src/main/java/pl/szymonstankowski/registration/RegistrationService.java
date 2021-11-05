@@ -8,27 +8,28 @@ import pl.szymonstankowski.registration.token.ConfirmationTokenService;
 import pl.szymonstankowski.user.User;
 import pl.szymonstankowski.user.UserService;
 
+import javax.mail.MessagingException;
 import java.time.LocalDateTime;
 
 @Service
 public class RegistrationService {
 
-    private final EmailValidatorService emailValidatorService;
+    private final EmailValidator emailValidator;
     private final UserService userService;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
     private final static String LINK_CONFIRMATION_EMAIL = "Hello %s! Please click the %s to confirm your registration!";
 
-    public RegistrationService(EmailValidatorService emailValidatorService, UserService userService, ConfirmationTokenService confirmationTokenService, EmailSender emailSender) {
-        this.emailValidatorService = emailValidatorService;
+    public RegistrationService(EmailValidator emailValidator, UserService userService, ConfirmationTokenService confirmationTokenService, EmailSender emailSender) {
+        this.emailValidator = emailValidator;
         this.userService = userService;
         this.confirmationTokenService = confirmationTokenService;
         this.emailSender = emailSender;
     }
 
-    public String register(User user){
-        boolean test = emailValidatorService.test(user.getEmail());
-        if (!test){
+    public String register(User user) {
+        boolean test = emailValidator.test(user.getEmail());
+        if (!test) {
             throw new IllegalStateException("email not valid");
         }
 
@@ -41,8 +42,12 @@ public class RegistrationService {
                 )
         );
 
-        String link = "http://localhost:8080/confirm?token="+token;
-        emailSender.send(user.getEmail(), buildEmail(user.getName(), link));
+        try {
+            String link = "http://localhost:8080/confirm?token=" + token;
+            emailSender.send(user.getEmail(), buildEmail(user.getName(), link));
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
         return token;
     }
 

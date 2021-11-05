@@ -2,7 +2,9 @@ package pl.szymonstankowski.user;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.szymonstankowski.plant.PlantService;
 import pl.szymonstankowski.userPlants.UserPlants;
@@ -23,18 +25,17 @@ public class UserController {
         this.plantService = plantService;
         this.userPlantsService = userPlantsService;
     }
-
+    @Transactional(readOnly=true)
     @GetMapping("/dashboard")
-    public String userPage(Model model, Principal principal){
+    public String getDashboard(Model model, Principal principal){
         String name = principal.getName();
         User user = userService.getUserByName(name);
         model.addAttribute("user", user);
-        List<UserPlants> userPlants = userPlantsService.findAllUserPlantsByUserId(user.getId());
-        model.addAttribute("userPlants", userPlants);
+        model.addAttribute("userPlants", user.getUserPlants());
         return "user-page";
     }
 
-    @GetMapping("/deleteUser")
+    @DeleteMapping("/deleteUser")
     public String deleteUser(Principal principal){
 
         String name = principal.getName();

@@ -19,7 +19,7 @@ public class Plant {
     private String soilType;
     private String type;
     private String vegetationPeriod;
-    private String wateringInterval;
+    private Long wateringInterval;
     private String sunnySpot;
     private boolean editable;
     private boolean active;

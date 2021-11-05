@@ -103,10 +103,10 @@ public class UserPlantsController {
             Plant plant1 = plantService.findPlantById(plant.getId());
             userPlants.setPlant(plant1);
 
-            int interval = Integer.parseInt(plant1.getWateringInterval());
+            Long interval = plant1.getWateringInterval();
 
             LocalDate dateAndInterval = date.plusDays(interval);
-            userPlants.setDataKolejnegoPodlania(dateAndInterval);
+            userPlants.setNextWateringDate(dateAndInterval);
 
             userPlantsService.savePlant(userPlants);
 
@@ -115,6 +115,19 @@ public class UserPlantsController {
             model.addAttribute("userPlants", userPlantsService.findAllUserPlantsByUserId(user.getId()));
         }
         return "user-page";
+    }
+
+    @GetMapping("/resetClock/{userPlantId}/{plantId}")
+    public String podlano(@PathVariable Long userPlantId, @PathVariable Long plantId) {
+        UserPlants userPlant = userPlantsService.findPlantById(userPlantId);
+        Plant plant = plantService.findPlantById(plantId);
+
+        userPlant.setLocalDate(LocalDate.now());
+        userPlant.setNextWateringDate(LocalDate.now().plusDays(plant.getWateringInterval()));
+
+
+        userPlantsService.savePlant(userPlant);
+        return "redirect:/dashboard";
     }
 
 }

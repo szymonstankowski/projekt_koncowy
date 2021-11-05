@@ -24,6 +24,6 @@ public class UserPlants{
     Plant plant;
 
     private LocalDate localDate;
-    private LocalDate dataKolejnegoPodlania;
+    private LocalDate nextWateringDate;
 
 }
