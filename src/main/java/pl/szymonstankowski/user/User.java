@@ -37,8 +37,12 @@ public class User implements UserDetails {
     @OneToMany
     List<UserPlants> userPlants;
 
+    public User(String szymon, String s, String pass, String admin_role, boolean b, boolean b1, List<UserPlants> userPlants) {
+    }
+
     public User(String name, String email, String password, String role) {
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
