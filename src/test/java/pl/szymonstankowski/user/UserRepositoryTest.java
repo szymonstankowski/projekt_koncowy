@@ -2,12 +2,9 @@ package pl.szymonstankowski.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.util.Optional;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
-
+@DataJpaTest
 class UserRepositoryTest {
 
     @Autowired
@@ -15,15 +12,6 @@ class UserRepositoryTest {
 
     @Test
     void itShouldFindUserByName() {
-        //given
-        String name = "szymon";
-        User user = new User("szymon", "szymon@wp.pl", "haslo", "ADMIN");
-        underTest.save(user);
-
-        //when
-        Optional<User> expected = underTest.findUserByName(name);
-        assertThat(expected).isPresent();
-
     }
 
     @Test
