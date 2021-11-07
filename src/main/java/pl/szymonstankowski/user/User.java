@@ -1,6 +1,8 @@
 package pl.szymonstankowski.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,9 +10,13 @@ import pl.szymonstankowski.userPlants.UserPlants;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class User implements UserDetails {
 
@@ -31,17 +37,7 @@ public class User implements UserDetails {
     @OneToMany
     List<UserPlants> userPlants;
 
-    public User(String admin, String admin1, List<GrantedAuthority> role_admin) {
-    }
-
-    public User(String name, @Email String email, String password, String role) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.role=role;
-    }
-
-    public User() {
+    public User(String name, String email, String password, String role) {
     }
 
     @Override

@@ -14,24 +14,21 @@ import java.time.LocalDateTime;
 @Service
 public class RegistrationService {
 
-    private final EmailValidator emailValidator;
+
+
     private final UserService userService;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
     private final static String LINK_CONFIRMATION_EMAIL = "Hello %s! Please click the %s to confirm your registration!";
 
-    public RegistrationService(EmailValidator emailValidator, UserService userService, ConfirmationTokenService confirmationTokenService, EmailSender emailSender) {
-        this.emailValidator = emailValidator;
+    public RegistrationService( UserService userService, ConfirmationTokenService confirmationTokenService, EmailSender emailSender) {
+
         this.userService = userService;
         this.confirmationTokenService = confirmationTokenService;
         this.emailSender = emailSender;
     }
 
     public String register(User user) {
-        boolean test = emailValidator.test(user.getEmail());
-        if (!test) {
-            throw new IllegalStateException("email not valid");
-        }
 
         String token = userService.saveUser(
                 new User(

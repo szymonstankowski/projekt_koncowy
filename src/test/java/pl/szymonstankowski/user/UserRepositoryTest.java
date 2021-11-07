@@ -1,13 +1,29 @@
 package pl.szymonstankowski.user;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Optional;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 
 class UserRepositoryTest {
 
+    @Autowired
+    private UserRepository underTest;
+
     @Test
-    void findUserByName() {
+    void itShouldFindUserByName() {
+        //given
+        String name = "szymon";
+        User user = new User("szymon", "szymon@wp.pl", "haslo", "ADMIN");
+        underTest.save(user);
+
+        //when
+        Optional<User> expected = underTest.findUserByName(name);
+        assertThat(expected).isPresent();
+
     }
 
     @Test
